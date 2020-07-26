@@ -3,6 +3,7 @@
 <div class="col-xs-6">
 	<center><h1>ML-based Material Data</h1>
 		<h3>Select upto three Elements</h3></center>
+		<form>
 		<table>
 		  <tbody>
 		    <tr>
@@ -210,14 +211,37 @@
 		  </tbody>
 		</table>
 		<br>
-		<center><button>Submit</button></center><hr>
+    	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<center><button onlick="popup()">Submit</button>
+		<script>
+			function popup(){
+				swal({
+				  title: "Thank You!",
+				  text: "Will you cite our work?",
+				  icon: "info",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("Cite us here: xxxxxxx", {
+				      icon: "success",
+				    });
+				  } else {
+				    swal("Poof! You're nuts.");
+				  }
+				});
+			}
+		</script>
+		</center><hr>
 		<center>
 		<form>
-		<label for="lname">Result </label><br>
+		<label for="lname">Result</label><br>
   		<input type="text" id="lname" name="lname" value=""><br><br>
   		<input type="reset" value="Reset">
 		</form>
 		</center>
+		</form>
 		<hr>
 		<h2>Alloy, Compound, Coarse-Grained and Fictional Data</h2>
 		<p>
