@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div class="col-xs-6">
 	<center><h1>ML-based Material Data</h1>
 		<h3>Select upto three Elements</h3></center>
-		<form>
 		<table>
 		  <tbody>
 		    <tr>
 		    	<!--<label class="input-check"><input onchange="change_state(this)" type="checkbox" value="1" name="test"/></label>-->
-		      <td class = "element non-metal"><div id="H"class="symbol">1<br>H</div></td>
+		      <td class = "element non-metal"align='center'><div id="H"class="symbol"><form><input type=submit value="H" style="width:100% height:100%"></form></div></td>
 		      <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -25,11 +25,11 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		       <td class="element noble"><div id="He" class="symbol">2<br>He</div></td>
+		       <td class="element noble"><div id="He" class="symbol"><form><input type=submit value="He" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Li" class="symbol">3<br>Li</div></td>
-		      <td class="element alkaline"><div id="Be" class="symbol">4<br>Be</div></td>
+		      <td class="element alkali"><div id="Li" class="symbol"><form><input type=submit value="Li" style="width:100% height:100%"></form></div></td>
+		      <td class="element alkaline"><div id="Be" class="symbol"><form><input type=submit value="Be" style="width:100% height:100%"></form></div></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -40,16 +40,16 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		      <td class="element metalloid"><div id="B" class="symbol">5<br>B</div></td>
-		      <td class="element non-metal"><div id="C" class="symbol">6<br>C</div></td>
-		      <td class="element non-metal"><div id="N" class="symbol">7<br>N</div></td>
-		      <td class="element non-metal"><div id="O" class="symbol">8<br>O</div></td>
-		      <td class="element non-metal"><div id="F" class="symbol">9<br>F</div></td>
-		      <td class="element noble"><div id="Ne"class="symbol">10<br>Ne</div></td>
+		      <td class="element metalloid"><div id="B" class="symbol"><form><input type=submit value="B" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="C" class="symbol"><form><input type=submit value="C" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="N" class="symbol"><form><input type=submit value="N" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="O" class="symbol"><form><input type=submit value="O" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="F" class="symbol"><form><input type=submit value="F" style="width:100% height:100%"></form></div></td>
+		      <td class="element noble"><div id="Ne"class="symbol"><form><input type=submit value="Ne" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		       <td class="element alkali"><div id="Na" class="symbol">11<br>Na</div></td>
-		       <td class="element alkaline"><div id="Mg" class="symbol">12<br>Mg</div></td>
+		       <td class="element alkali"><div id="Na" class="symbol"><form><input type=submit value="Na" style="width:100% height:100%"></form></div></td>
+		       <td class="element alkaline"><div id="Mg" class="symbol"><form><input type=submit value="Mg" style="width:100% height:100%"></form></div></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -60,92 +60,92 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		       <td class="element post-transition"><div id="Al" class="symbol">13<br>Al</div></td>
-		       <td class="element metalloid"><div id="Si" class="symbol">14<br>Si</div></td>
-		       <td class="element non-metal"><div id="P" class="symbol">15<br>P</div></td>
-		       <td class="element non-metal"><div id="S" class="symbol">16<br>S</div></td>
-		       <td class="element non-metal"><div id="Cl" class="symbol">17<br>Cl</div></td>
-		       <td class="element noble"><div id="Ar"class="symbol">18<br>Ar</div></td>
+		       <td class="element post-transition"><div id="Al" class="symbol"><form><input type=submit value="Al" style="width:100% height:100%"></form></div></td>
+		       <td class="element metalloid"><div id="Si" class="symbol"><form><input type=submit value="Si" style="width:100% height:100%"></form></div></td>
+		       <td class="element non-metal"><div id="P" class="symbol"><form><input type=submit value="P" style="width:100% height:100%"></form></div></td>
+		       <td class="element non-metal"><div id="S" class="symbol"><form><input type=submit value="S" style="width:100% height:100%"></form></div></td>
+		       <td class="element non-metal"><div id="Cl" class="symbol"><form><input type=submit value="Cl" style="width:100% height:100%"></form></div></td>
+		       <td class="element noble"><div id="Ar"class="symbol"><form><input type=submit value="Ar" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="K" class="symbol">19<br>K</div></td>
-		      <td class="element alkaline"><div id="Ca" class="symbol">20<br>Ca</div></td>
-		      <td class="element transition"><div id="Sc" class="symbol">21<br>Sc</div></td>
-		      <td class="element transition"><div id="Ti" class="symbol">22<br>Ti</div></td>
-		      <td class="element transition"><div id="V" class="symbol">23<br>V</div></td>
-		      <td class="element transition"><div id="Cr" class="symbol">24<br>Cr</div></td>
-		      <td class="element transition"><div id="Mn" class="symbol">25<br>Mn</div></td>
-		      <td class="element transition"><div id="Fe" class="symbol">26<br>Fe</div></td>
-		      <td class="element transition"><div id="Co" class="symbol">27<br>Co</div></td>
-		      <td class="element transition"><div id="Ni" class="symbol">28<br>Ni</div></td>
-		      <td class="element transition"><div id="Cu" class="symbol">29<br>Cu</div></td>
-		      <td class="element post-transition"><div id="Zn" class="symbol">30<br>Zn</div></td>
-		      <td class="element post-transition"><div id="Ga" class="symbol">31<br>Ga</div></td>
-		      <td class="element metalloid"><div id="Ge" class="symbol">32<br>Ge</div></td>
-		      <td class="element metalloid"><div id="As" class="symbol">33<br>As</div></td>
-		      <td class="element non-metal"><div id="Se" class="symbol">34<br>Se</div></td>
-		      <td class="element non-metal"><div id="Br" class="symbol">35<br>Br</div></td>
-		      <td class="element noble"><div id="Kr" class="symbol">36<br>Kr</div></td>
+		      <td class="element alkali"><div id="K" class="symbol"><form><input type=submit value="K" style="width:100% height:100%"></form></div></td>
+		      <td class="element alkaline"><div id="Ca" class="symbol"><form><input type=submit value="Ca" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Sc" class="symbol"><form><input type=submit value="Sc" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ti" class="symbol"><form><input type=submit value="Ti" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="V" class="symbol"><form><input type=submit value="V" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Cr" class="symbol"><form><input type=submit value="Cr" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Mn" class="symbol"><form><input type=submit value="Mn" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Fe" class="symbol"><form><input type=submit value="Fe" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Co" class="symbol"><form><input type=submit value="Co" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ni" class="symbol"><form><input type=submit value="Ni" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Cu" class="symbol"><form><input type=submit value="Cu" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Zn" class="symbol"><form><input type=submit value="Zn" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Ga" class="symbol"><form><input type=submit value="Ga" style="width:100% height:100%"></form></div></td>
+		      <td class="element metalloid"><div id="Ge" class="symbol"><form><input type=submit value="Ge" style="width:100% height:100%"></form></div></td>
+		      <td class="element metalloid"><div id="As" class="symbol"><form><input type=submit value="As" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="Se" class="symbol"><form><input type=submit value="Se" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="Br" class="symbol"><form><input type=submit value="Br" style="width:100% height:100%"></form></div></td>
+		      <td class="element noble"><div id="Kr" class="symbol"><form><input type=submit value="Kr" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Rb" class="symbol">37<br>Rb</div></td>
-		      <td class="element alkaline"><div id="Sr" class="symbol">38<br>Sr</div></td>
-		      <td class="element transition"><div id="Y"class="symbol">39<br>Y</div></td>
-		      <td class="element transition"><div id="Zr" class="symbol">40<br>Zr</div></td>
-		      <td class="element transition"><div id="Nb" class="symbol">41<br>Nb</div></td>
-		      <td class="element transition"><div id="Mo" class="symbol">42<br>Mo</div></td>
-		      <td class="element transition"><div id="Tc" class="symbol">43<br>Tc</div></td>
-		      <td class="element transition"><div id="Ru" class="symbol">44<br>Ru</div></td>
-		      <td class="element transition"><div id="Rh" class="symbol">45<br>Rh</div></td>
-		      <td class="element transition"><div id="Pd" class="symbol">46<br>Pd</div></td>
-		      <td class="element transition"><div id="Ag" class="symbol">47<br>Ag</div></td>
-		      <td class="element post-transition"><div id="Cd" class="symbol">48<br>Cd</div></td>
-		      <td class="element post-transition"><div id="In" class="symbol">49<br>In</div></td>
-		      <td class="element post-transition"><div id="Sn" class="symbol">50<br>Sn</div></td>
-		      <td class="element metalloid"><div id="Sb" class="symbol">51<br>Sb</div></td>
-		      <td class="element metalloid"><div id="Te" class="symbol">52<br>Te</div></td>
-		      <td class="element non-metal"><div id="I" class="symbol">53<br>I</div></td>
-		      <td class="element noble"><div id="Xe" class="symbol">54<br>Xe</div></td>
+		      <td class="element alkali"><div id="Rb" class="symbol"><form><input type=submit value="Rb" style="width:100% height:100%"></form></div></td>
+		      <td class="element alkaline"><div id="Sr" class="symbol"><form><input type=submit value="Sr" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Y"class="symbol"><form><input type=submit value="Y" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Zr" class="symbol"><form><input type=submit value="Zr" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Nb" class="symbol"><form><input type=submit value="Nb" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Mo" class="symbol"><form><input type=submit value="Mo" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Tc" class="symbol"><form><input type=submit value="Tc" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ru" class="symbol"><form><input type=submit value="Ru" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Rh" class="symbol"><form><input type=submit value="Rh" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Pd" class="symbol"><form><input type=submit value="Pd" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ag" class="symbol"><form><input type=submit value="Ag" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Cd" class="symbol"><form><input type=submit value="Cd" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="In" class="symbol"><form><input type=submit value="In" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Sn" class="symbol"><form><input type=submit value="Sn" style="width:100% height:100%"></form></div></td>
+		      <td class="element metalloid"><div id="Sb" class="symbol"><form><input type=submit value="Sb" style="width:100% height:100%"></form></div></td>
+		      <td class="element metalloid"><div id="Te" class="symbol"><form><input type=submit value="Te" style="width:100% height:100%"></form></div></td>
+		      <td class="element non-metal"><div id="I" class="symbol"><form><input type=submit value="I" style="width:100% height:100%"></form></div></td>
+		      <td class="element noble"><div id="Xe" class="symbol"><form><input type=submit value="Xe" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Cs" class="symbol">55<br>Cs</div></td>
-		      <td class="element alkaline"><div id="Ba" class="symbol">56<br>Ba</div></td>
+		      <td class="element alkali"><div id="Cs" class="symbol"><form><input type=submit value="Cs" style="width:100% height:100%"></form></div></td>
+		      <td class="element alkaline"><div id="Ba" class="symbol"><form><input type=submit value="Ba" style="width:100% height:100%"></form></div></td>
 		      <td class="element star">*<br></td>
-		      <td class="element transition"><div id="Hf"class="symbol">72<br>Hf</div></td>
-		      <td class="element transition"><div id="Ta"class="symbol">73<br>Ta</div></td>
-		      <td class="element transition"><div id="W"class="symbol">74<br>W</div></td>
-		      <td class="element transition"><div id="Re"class="symbol">75<br>Re</div></td>
-		      <td class="element transition"><div id="Os"class="symbol">76<br>Os</div></td>
-		      <td class="element transition"><div id="Ir"class="symbol">77<br>Ir</div></td>
-		      <td class="element transition"><div id="Pt"class="symbol">78<br>Pt</div></td>
-		      <td class="element transition"><div id="Au"class="symbol">79<br>Au</div></td>
-		      <td class="element post-transition"><div id="Hg" class="symbol">80<br>Hg</div></td>
-		      <td class="element post-transition"><div id="Tl" class="symbol">81<br>Tl</div></td>
-		      <td class="element post-transition"><div id="Pb" class="symbol">82<br>Pb</div></td>
-		      <td class="element post-transition"><div id="Bi" class="symbol">83<br>Bi</div></td>
-		      <td class="element post-transition"><div id="Po" class="symbol">84<br>Po</div></td>
-		      <td class="element metalloid"><div id="At" class="symbol">85<br>At</div></td>
-		      <td class="element noble"><div id="Rn" class="symbol">86<br>Rn</div></td>
+		      <td class="element transition"><div id="Hf"class="symbol"><form><input type=submit value="Hf" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ta"class="symbol"><form><input type=submit value="Ta" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="W"class="symbol"><form><input type=submit value="W" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Re"class="symbol"><form><input type=submit value="Re" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Os"class="symbol"><form><input type=submit value="Os" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Ir"class="symbol"><form><input type=submit value="Ir" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Pt"class="symbol"><form><input type=submit value="Pt" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Au"class="symbol"><form><input type=submit value="Au" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Hg" class="symbol"><form><input type=submit value="Hg" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Tl" class="symbol"><form><input type=submit value="Tl" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Pb" class="symbol"><form><input type=submit value="Pb" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Bi" class="symbol"><form><input type=submit value="Bi" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Po" class="symbol"><form><input type=submit value="Po" style="width:100% height:100%"></form></div></td>
+		      <td class="element metalloid"><div id="At" class="symbol"><form><input type=submit value="At" style="width:100% height:100%"></form></div></td>
+		      <td class="element noble"><div id="Rn" class="symbol"><form><input type=submit value="Rn" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Fr" class="symbol">87<br>Fr</div></td>
-		      <td class="element alkaline"><div id="Ra" class="symbol">88<br>Ra</div></td>
+		      <td class="element alkali"><div id="Fr" class="symbol"><form><input type=submit value="Fr" style="width:100% height:100%"></form></div></td>
+		      <td class="element alkaline"><div id="Ra" class="symbol"><form><input type=submit value="Ra" style="width:100% height:100%"></form></div></td>
 		      <td class="element star">**<br></td>
-		      <td class="element transition"><div id="Rf" class="symbol">104<br>Rf</div></td>
-		      <td class="element transition"><div id="Db" class="symbol">105<br>Db</div></td>
-		      <td class="element transition"><div id="Sg" class="symbol">106<br>Sg</div></td>
-		      <td class="element transition"><div id="Bh" class="symbol">107<br>Bh</div></td>
-		      <td class="element transition"><div id="Hs" class="symbol">108<br>Hs</div></td>
-		      <td class="element unclassified"><div id="Mt" class="symbol">109<br>Mt</div></td>
-		      <td class="element unclassified"><div id="Ds" class="symbol">110<br>Ds</div></td>
-		      <td class="element unclassified"><div id="Rg" class="symbol">111<br>Rg</div></td>
-		      <td class="element post-transition"><div id="Cn" class="symbol">112<br>Cn</div></td>
-		      <td class="element unclassified"><div id="Nh" class="symbol">113<br>Nh</div></td>
-		      <td class="element unclassified"><div id="Fl" class="symbol">114<br>Fl</div></td>
-		      <td class="element unclassified"><div id="Mc" class="symbol">115<br>Mc</div></td>
-		      <td class="element unclassified"><div id="Lv" class="symbol">116<br>Lv</div></td>
-		      <td class="element unclassified"><div id="Ts" class="symbol">117<br>Ts</div></td>
-		      <td class="element unclassified"><div id="Og" class="symbol">118<br>Og</div></td>
+		      <td class="element transition"><div id="Rf" class="symbol"><form><input type=submit value="Rf" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Db" class="symbol"><form><input type=submit value="Db" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Sg" class="symbol"><form><input type=submit value="Sg" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Bh" class="symbol"><form><input type=submit value="Bh" style="width:100% height:100%"></form></div></td>
+		      <td class="element transition"><div id="Hs" class="symbol"><form><input type=submit value="Hs" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Mt" class="symbol"><form><input type=submit value="Mt" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Ds" class="symbol"><form><input type=submit value="Ds" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Rg" class="symbol"><form><input type=submit value="Rg" style="width:100% height:100%"></form></div></td>
+		      <td class="element post-transition"><div id="Cn" class="symbol"><form><input type=submit value="Cn" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Nh" class="symbol"><form><input type=submit value="Nh" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Fl" class="symbol"><form><input type=submit value="Fl" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Mc" class="symbol"><form><input type=submit value="Mc" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Lv" class="symbol"><form><input type=submit value="Lv" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Ts" class="symbol"><form><input type=submit value="Ts" style="width:100% height:100%"></form></div></td>
+		      <td class="element unclassified"><div id="Og" class="symbol"><form><input type=submit value="Og" style="width:100% height:100%"></form></div></td>
 		    </tr>
 		    <tr>
 		       <td class=" separator"><br></td>
@@ -170,51 +170,55 @@
 		    <tr>
 		       <td class="element empty"><br></td>
 		       <td class="element star">*</td>
-		       <td class="element lanthanide"><div id="La" class="symbol">57<br>La</div></td>
-		       <td class="element lanthanide"><div id="Ce" class="symbol">58<br>Ce</div></td>
-		       <td class="element lanthanide"><div id="Pr" class="symbol">59<br>Pr</div></td>
-		       <td class="element lanthanide"><div id="Nd" class="symbol">60<br>Nd</div></td>
-		       <td class="element lanthanide"><div id="Pm" class="symbol">61<br>Pm</div></td>
-		       <td class="element lanthanide"><div id="Sm" class="symbol">62<br>Sm</div></td>
-		       <td class="element lanthanide"><div id="Eu" class="symbol">63<br>Eu</div></td>
-		       <td class="element lanthanide"><div id="Gd" class="symbol">64<br>Gd</div></td>
-		       <td class="element lanthanide"><div id="Tb" class="symbol">65<br>Tb</div></td>
-		       <td class="element lanthanide"><div id="Dy" class="symbol">66<br>Dy</div></td>
-		       <td class="element lanthanide"><div id="Ho" class="symbol">67<br>Ho</div></td>
-		       <td class="element lanthanide"><div id="Er" class="symbol">68<br>Er</div></td>
-		       <td class="element lanthanide"><div id="Tm" class="symbol">69<br>Tm</div></td>
-		       <td class="element lanthanide"><div id="Yb" class="symbol">70<br>Yb</div></td>
-		       <td class="element lanthanide"><div id="Lu" class="symbol">71<br>Lu</div></td>
+		       <td class="element lanthanide"><div id="La" class="symbol"><form><input type=submit value="La" style="width:100% height:100%"></form>57<br></div></td>
+		       <td class="element lanthanide"><div id="Ce" class="symbol"><form><input type=submit value="Ce" style="width:100% height:100%"></form>58<br></div></td>
+		       <td class="element lanthanide"><div id="Pr" class="symbol"><form><input type=submit value="Pr" style="width:100% height:100%"></form>59<br></div></td>
+		       <td class="element lanthanide"><div id="Nd" class="symbol"><form><input type=submit value="Nd" style="width:100% height:100%"></form>60<br></div></td>
+		       <td class="element lanthanide"><div id="Pm" class="symbol"><form><input type=submit value="Pm" style="width:100% height:100%"></form>61<br></div></td>
+		       <td class="element lanthanide"><div id="Sm" class="symbol"><form><input type=submit value="Sm" style="width:100% height:100%"></form>62<br></div></td>
+		       <td class="element lanthanide"><div id="Eu" class="symbol"><form><input type=submit value="Eu" style="width:100% height:100%"></form>63<br></div></td>
+		       <td class="element lanthanide"><div id="Gd" class="symbol"><form><input type=submit value="Gd" style="width:100% height:100%"></form>64<br></div></td>
+		       <td class="element lanthanide"><div id="Tb" class="symbol"><form><input type=submit value="Tb" style="width:100% height:100%"></form>65<br></div></td>
+		       <td class="element lanthanide"><div id="Dy" class="symbol"><form><input type=submit value="Dy" style="width:100% height:100%"></form>66<br></div></td>
+		       <td class="element lanthanide"><div id="Ho" class="symbol"><form><input type=submit value="Ho" style="width:100% height:100%"></form>67<br></div></td>
+		       <td class="element lanthanide"><div id="Er" class="symbol"><form><input type=submit value="Er" style="width:100% height:100%"></form>68<br></div></td>
+		       <td class="element lanthanide"><div id="Tm" class="symbol"><form><input type=submit value="Tm" style="width:100% height:100%"></form>69<br></div></td>
+		       <td class="element lanthanide"><div id="Yb" class="symbol"><form><input type=submit value="Yb" style="width:100% height:100%"></form>70<br></div></td>
+		       <td class="element lanthanide"><div id="Lu" class="symbol"><form><input type=submit value="Lu" style="width:100% height:100%"></form>71<br></div></td>
 		       <td class="element empty"><br></td>
 		    </tr>
 		    <tr>
 		      <td class="element empty"><br></td>
 		      <td class="element star">**<br></td>
-		      <td class="element actinide"><div id="Ac" class="symbol">89<br>Ac</div></td>
-		      <td class="element actinide"><div id="Th" class="symbol">90<br>Th</div></td>
-		      <td class="element actinide"><div id="Pa" class="symbol">91<br>Pa</div></td>
-		      <td class="element actinide"><div id="U" class="symbol">92<br>U</div></td>
-		      <td class="element actinide"><div id="Np" class="symbol">93<br>Np</div></td>
-		      <td class="element actinide"><div id="Pu" class="symbol">94<br>Pu</div></td>
-		      <td class="element actinide"><div id="Am" class="symbol">95<br>Am</div></td>
-		      <td class="element actinide"><div id="Cm" class="symbol">96<br>Cm</div></td>
-		      <td class="element actinide"><div id="Bk" class="symbol">97<br>Bk</div></td>
-		      <td class="element actinide"><div id="Cf" class="symbol">98<br>Cf</div></td>
-		      <td class="element actinide"><div id="Es" class="symbol">99<br>Es</div></td>
-		      <td class="element actinide"><div id="Fm" class="symbol">100<br>Fm</div></td>
-		      <td class="element actinide"><div id="Md" class="symbol">101<br>Md</div></td>
-		      <td class="element actinide"><div id="No" class="symbol">102<br>No</div></td>
-		      <td class="element actinide"><div id="Lr" class="symbol">103<br>Lr</div></td>
+		      <td class="element actinide"><div id="Ac" class="symbol"><form><input type=submit value="Ac" style="width:100% height:100%"></form>89<br></div></td>
+		      <td class="element actinide"><div id="Th" class="symbol"><form><input type=submit value="Th" style="width:100% height:100%"></form>90<br></div></td>
+		      <td class="element actinide"><div id="Pa" class="symbol"><form><input type=submit value="Pa" style="width:100% height:100%"></form>91<br></div></td>
+		      <td class="element actinide"><div id="U" class="symbol"><form><input type=submit value="U" style="width:100% height:100%"></form>92<br></div></td>
+		      <td class="element actinide"><div id="Np" class="symbol"><form><input type=submit value="Np" style="width:100% height:100%"></form>93<br></div></td>
+		      <td class="element actinide"><div id="Pu" class="symbol"><form><input type=submit value="Pu" style="width:100% height:100%"></form>94<br></div></td>
+		      <td class="element actinide"><div id="Am" class="symbol"><form><input type=submit value="Am" style="width:100% height:100%"></form>95<br></div></td>
+		      <td class="element actinide"><div id="Cm" class="symbol"><form><input type=submit value="Cm" style="width:100% height:100%"></form>96<br></div></td>
+		      <td class="element actinide"><div id="Bk" class="symbol"><form><input type=submit value="Bk" style="width:100% height:100%"></form>97<br></div></td>
+		      <td class="element actinide"><div id="Cf" class="symbol"><form><input type=submit value="Cf" style="width:100% height:100%"></form>98<br></div></td>
+		      <td class="element actinide"><div id="Es" class="symbol"><form><input type=submit value="Es" style="width:100% height:100%"></form>99<br></div></td>
+		      <td class="element actinide"><div id="Fm" class="symbol"><form><input type=submit value="Fm" style="width:100% height:100%"></form>100<br></div></td>
+		      <td class="element actinide"><div id="Md" class="symbol"><form><input type=submit value="Md" style="width:100% height:100%"></form>101<br></div></td>
+		      <td class="element actinide"><div id="No" class="symbol"><form><input type=submit value="No" style="width:100% height:100%"></form>102<br></div></td>
+		      <td class="element actinide"><div id="Lr" class="symbol"><form><input type=submit value="Lr" style="width:100% height:100%"></form>103<br></div></td>
 		       <td class="element empty"><br>
 		      </td>
 		    </tr>
 		  </tbody>
 		</table>
 		<br>
-    	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		<center><button onlick="popup()">Submit</button>
-		<script>
-			function popup(){
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<center>
+		<div>
+
+			<button onlick="popUp()">Submit</button>
+
+			<script>
+			function popUp(){
 				swal({
 				  title: "Thank You!",
 				  text: "Will you cite our work?",
@@ -232,8 +236,10 @@
 				  }
 				});
 			}
-		</script>
-		</center><hr>
+			</script>
+		</div>
+		</center>
+		<hr>
 		<center>
 		<form>
 		<label for="lname">Result</label><br>
@@ -241,7 +247,6 @@
   		<input type="reset" value="Reset">
 		</form>
 		</center>
-		</form>
 		<hr>
 		<h2>Alloy, Compound, Coarse-Grained and Fictional Data</h2>
 		<p>
@@ -279,5 +284,6 @@
 		  Website DOI: <a href="#"></a>Not Available</a>
 		</p>
 		<hr/>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </div>
 {% endblock content %}
