@@ -1,0 +1,65 @@
+table {
+    width:100%;
+    cellspacing:2px;
+    cellpadding:2px;
+}
+.element {
+    width: 5%;
+    height: 50px;
+    valign: top;
+    text-align: center;
+}
+.separator {
+    width: 5%px;
+    height: 10px;
+}
+.element.alkali {
+    background-color: #e9728A;
+}
+.element.alkaline {
+    background-color: #f49548;
+}
+.element.noble {
+    background-color: #52bdff;
+}
+.element.transition {
+    background-color: #eecf68;
+}
+.element.post-transition {
+    background-color: #d1d1d1;
+}
+.element.metalloid {
+    background-color: #00c295;
+}
+.element.non-metal {
+    background-color: #96d4c1;
+}
+.element.lanthanide {
+    background-color: #c77acd;
+}
+.element.actinide {
+    background-color: #b880E0;
+}
+.element.unclassified {
+    background-color: #acb8c8;
+}
+
+/* this is the style of an unchecked "button" */
+/*.input-check{
+    display:inline-block;
+    height:20px;
+    padding:5px 8px;
+    background:green;
+    width:70px;
+    color:white
+}
+/* This is the style for a checked "button" */
+/*.input-check.checked{
+    background:red;
+    color:black;
+    font-weight:bold
+}
+/* Hide the checkbox */
+/*.input-check input{
+    display:none
+}
