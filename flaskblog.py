@@ -1,4 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, jsonify, make_response
+import render
+
 app = Flask(__name__)
 
 posts = [
@@ -19,15 +21,28 @@ posts = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', posts=posts)
+	#return pt.main()
+    return render_template('data.html')
 
-@app.route("/data")
-def data():
-    return render_template('data.html', title='Data')
+@app.route("/blog")
+def blog():
+    return render_template('home.html', posts=posts, title='Blog')
 
 @app.route("/about")
 def about():
     return render_template('about.html', title='Team')
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+@app.route("/test")
+def test():
+    return render_template('test.html', title='Test')
+
+@app.route("/process", methods=["POST"])
+def process():
+	if request.method == "POST":
+		clicked=request.form['data']
+    	# sum=render.add(a,b,c)
+		print(clicked)
+		return json.dumps({options})
+
+if __name__ == "__main__":
+    app.run(debug=True)
