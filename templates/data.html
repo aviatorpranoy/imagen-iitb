@@ -19,7 +19,7 @@
 			var chklength = chk_arr.length;   
 			console.log("Checkbox has been acquired");          
 			var tot = 0;
-			var i = -1;
+			var i = 0;
 			var data = "";
 			for(k=0;k< chklength;k++) {
 
@@ -28,8 +28,14 @@
 					console.log("Checkbox limit exceeded"); 
 
 
-					var categories = $('#unchk');
-  					categories.prop('disabled', !categories.prop('disabled'));
+					var categories = $('#off');
+					
+					  categories.prop('disabled', !categories.prop('disabled'));
+					  
+					  //$('#mainChk').on('click', function(){
+					var off = $('.off');
+					off.prop('disabled', !off.prop('disabled'));
+        //});
 
 
 					//document.getElementsByName("chk").disabled = true;
@@ -47,14 +53,10 @@
 						$('#result').html(json['sum']);
 
 
-			}
-			});
-
-
-
+					}
+					});
+					break;
 				}
-
-
 				if (chk_arr[k].checked) { 
 
 					console.log(chk_arr[k].checked)
@@ -96,12 +98,16 @@
 
 <div class="col-xs-6">
 	<center><h1>ML-based Constants of Elasticity</h1>
+		<div class="alert alert-info">
+			<strong>Info!</strong> Select upto three elements.
+		  </div>
+		<div id="succeess" class="alert alert-success" role="alert" style="display:none;"></div>
 		<!--<h3>Select upto three Elements</h3>--></center>
 		<table id="unchk" >
 		  <tbody>
 		    <tr>
-		    	<!--<label class="input-check"><input onchange="change_state(this)" type="checkbox" value="1" name="test"/></label>-->
-		      <td class = "element non-metal" align='center'><div id="H"class="symbol">H<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="1"> </div></td>
+		    	<!--<label class="input-check"><input onchange="change_state(this)" type="checkbox" class="off" value="1" name="test"/></label>-->
+		      <td class = "element non-metal" align='center'><div id="H"class="symbol">H<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="1"> </div></td>
 		      <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -118,11 +124,11 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		       <td class="element noble"><div id="He" class="symbol">He<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="2"> </div></td>
+		       <td class="element noble"><div id="He" class="symbol">He<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="2"> </div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Li" class="symbol">Li<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="3"> </div></td>
-		      <td class="element alkaline"><div id="Be" class="symbol">Be<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="4"> </div></td>
+		      <td class="element alkali"><div id="Li" class="symbol">Li<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="3"> </div></td>
+		      <td class="element alkaline"><div id="Be" class="symbol">Be<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="4"> </div></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -133,16 +139,16 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		      <td class="element metalloid"><div id="B" class="symbol">B<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="5"> </div></td>
-		      <td class="element non-metal"><div id="C" class="symbol">C<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="6"> </div></td>
-		      <td class="element non-metal"><div id="N" class="symbol">N<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="7"> </div></td>
-		      <td class="element non-metal"><div id="O" class="symbol">O<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="8"> </div></td>
-		      <td class="element non-metal"><div id="F" class="symbol">F<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="9"> </div></td>
-		      <td class="element noble"><div id="Ne"class="symbol">Ne<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="10"> </div></td>
+		      <td class="element metalloid"><div id="B" class="symbol">B<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="5"> </div></td>
+		      <td class="element non-metal"><div id="C" class="symbol">C<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="6"> </div></td>
+		      <td class="element non-metal"><div id="N" class="symbol">N<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="7"> </div></td>
+		      <td class="element non-metal"><div id="O" class="symbol">O<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="8"> </div></td>
+		      <td class="element non-metal"><div id="F" class="symbol">F<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="9"> </div></td>
+		      <td class="element noble"><div id="Ne"class="symbol">Ne<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="10"> </div></td>
 		    </tr>
 		    <tr>
-		       <td class="element alkali"><div id="Na" class="symbol">Na<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="11"> </div></td>
-		       <td class="element alkaline"><div id="Mg" class="symbol">Mg<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="12"> </div></td>
+		       <td class="element alkali"><div id="Na" class="symbol">Na<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="11"> </div></td>
+		       <td class="element alkaline"><div id="Mg" class="symbol">Mg<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="12"> </div></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
@@ -153,92 +159,92 @@
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
 		       <td class="element empty"><br></td>
-		       <td class="element post-transition"><div id="Al" class="symbol">Al<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="13"> </div></td>
-		       <td class="element metalloid"><div id="Si" class="symbol">Si<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="14"> </div></td>
-		       <td class="element non-metal"><div id="P" class="symbol">P<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="15"> </div></td>
-		       <td class="element non-metal"><div id="S" class="symbol">S<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="16"> </div></td>
-		       <td class="element non-metal"><div id="Cl" class="symbol">Cl<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="17"> </div></td>
-		       <td class="element noble"><div id="Ar"class="symbol"> Ar<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="18"> </div></td>
+		       <td class="element post-transition"><div id="Al" class="symbol">Al<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="13"> </div></td>
+		       <td class="element metalloid"><div id="Si" class="symbol">Si<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="14"> </div></td>
+		       <td class="element non-metal"><div id="P" class="symbol">P<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="15"> </div></td>
+		       <td class="element non-metal"><div id="S" class="symbol">S<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="16"> </div></td>
+		       <td class="element non-metal"><div id="Cl" class="symbol">Cl<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="17"> </div></td>
+		       <td class="element noble"><div id="Ar"class="symbol"> Ar<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="18"> </div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="K" class="symbol"> K<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="19"> </div></td>
-		      <td class="element alkaline"><div id="Ca" class="symbol">Ca<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="20"> </div></td>
-		      <td class="element transition"><div id="Sc" class="symbol">Sc<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="21"> </div></td>
-		      <td class="element transition"><div id="Ti" class="symbol">Ti<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="22"> </div></td>
-		      <td class="element transition"><div id="V" class="symbol">V<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="23"> </div></td>
-		      <td class="element transition"><div id="Cr" class="symbol">Cr<br> <input name="chk" type="checkbox" onchange="check()" id="unchk" value="24"> </div></td>
-		      <td class="element transition"><div id="Mn" class="symbol">Mn<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="25"> </div></td>
-		      <td class="element transition"><div id="Fe" class="symbol">Fe<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="26"> </div></td>
-		      <td class="element transition"><div id="Co" class="symbol">Co<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="27"> </div></td>
-		      <td class="element transition"><div id="Ni" class="symbol">Ni<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="28"> </div></td>
-		      <td class="element transition"><div id="Cu" class="symbol">Cu<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="29"> </div></td>
-		      <td class="element post-transition"><div id="Zn" class="symbol">Zn<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="30"> </div></td>
-		      <td class="element post-transition"><div id="Ga" class="symbol">Ga<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="31"> </div></td>
-		      <td class="element metalloid"><div id="Ge" class="symbol">Ge<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="32"> </div></td>
-		      <td class="element metalloid"><div id="As" class="symbol">As<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="33"> </div></td>
-		      <td class="element non-metal"><div id="Se" class="symbol">Se<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="34"> </div></td>
-		      <td class="element non-metal"><div id="Br" class="symbol">Br<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="35"> </div></td>
-		      <td class="element noble"><div id="Kr" class="symbol">Kr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="36"> </div></td>
+		      <td class="element alkali"><div id="K" class="symbol"> K<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="19"> </div></td>
+		      <td class="element alkaline"><div id="Ca" class="symbol">Ca<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="20"> </div></td>
+		      <td class="element transition"><div id="Sc" class="symbol">Sc<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="21"> </div></td>
+		      <td class="element transition"><div id="Ti" class="symbol">Ti<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="22"> </div></td>
+		      <td class="element transition"><div id="V" class="symbol">V<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="23"> </div></td>
+		      <td class="element transition"><div id="Cr" class="symbol">Cr<br> <input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="24"> </div></td>
+		      <td class="element transition"><div id="Mn" class="symbol">Mn<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="25"> </div></td>
+		      <td class="element transition"><div id="Fe" class="symbol">Fe<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="26"> </div></td>
+		      <td class="element transition"><div id="Co" class="symbol">Co<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="27"> </div></td>
+		      <td class="element transition"><div id="Ni" class="symbol">Ni<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="28"> </div></td>
+		      <td class="element transition"><div id="Cu" class="symbol">Cu<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="29"> </div></td>
+		      <td class="element post-transition"><div id="Zn" class="symbol">Zn<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="30"> </div></td>
+		      <td class="element post-transition"><div id="Ga" class="symbol">Ga<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="31"> </div></td>
+		      <td class="element metalloid"><div id="Ge" class="symbol">Ge<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="32"> </div></td>
+		      <td class="element metalloid"><div id="As" class="symbol">As<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="33"> </div></td>
+		      <td class="element non-metal"><div id="Se" class="symbol">Se<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="34"> </div></td>
+		      <td class="element non-metal"><div id="Br" class="symbol">Br<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="35"> </div></td>
+		      <td class="element noble"><div id="Kr" class="symbol">Kr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="36"> </div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Rb" class="symbol">Rb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="37"> </div></td>
-		      <td class="element alkaline"><div id="Sr" class="symbol">Sr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="38"> </div></td>
-		      <td class="element transition"><div id="Y"class="symbol">Y<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="39"> </div></td>
-		      <td class="element transition"><div id="Zr" class="symbol">Zr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="40"> </div></td>
-		      <td class="element transition"><div id="Nb" class="symbol">Nb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="41"> </div></td>
-		      <td class="element transition"><div id="Mo" class="symbol">Mo<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="42"> </div></td>
-		      <td class="element transition"><div id="Tc" class="symbol">Tc<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="43"> </div></td>
-		      <td class="element transition"><div id="Ru" class="symbol">Ru<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="44"> </div></td>
-		      <td class="element transition"><div id="Rh" class="symbol">Rh<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="45"> </div></td>
-		      <td class="element transition"><div id="Pd" class="symbol">Pd<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="46"> </div></td>
-		      <td class="element transition"><div id="Ag" class="symbol">Ag<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="47"> </div></td>
-		      <td class="element post-transition"><div id="Cd" class="symbol">Cd<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="48"> </div></td>
-		      <td class="element post-transition"><div id="In" class="symbol">In<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="49"> </div></td>
-		      <td class="element post-transition"><div id="Sn" class="symbol">Sn<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="50"> </div></td>
-		      <td class="element metalloid"><div id="Sb" class="symbol">Sb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="51"> </div></td>
-		      <td class="element metalloid"><div id="Te" class="symbol">Te<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="52"> </div></td>
-		      <td class="element non-metal"><div id="I" class="symbol">I<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="53"> </div></td>
-		      <td class="element noble"><div id="Xe" class="symbol">Xe<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="54"> </div></td>
+		      <td class="element alkali"><div id="Rb" class="symbol">Rb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="37"> </div></td>
+		      <td class="element alkaline"><div id="Sr" class="symbol">Sr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="38"> </div></td>
+		      <td class="element transition"><div id="Y"class="symbol">Y<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="39"> </div></td>
+		      <td class="element transition"><div id="Zr" class="symbol">Zr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="40"> </div></td>
+		      <td class="element transition"><div id="Nb" class="symbol">Nb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="41"> </div></td>
+		      <td class="element transition"><div id="Mo" class="symbol">Mo<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="42"> </div></td>
+		      <td class="element transition"><div id="Tc" class="symbol">Tc<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="43"> </div></td>
+		      <td class="element transition"><div id="Ru" class="symbol">Ru<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="44"> </div></td>
+		      <td class="element transition"><div id="Rh" class="symbol">Rh<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="45"> </div></td>
+		      <td class="element transition"><div id="Pd" class="symbol">Pd<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="46"> </div></td>
+		      <td class="element transition"><div id="Ag" class="symbol">Ag<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="47"> </div></td>
+		      <td class="element post-transition"><div id="Cd" class="symbol">Cd<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="48"> </div></td>
+		      <td class="element post-transition"><div id="In" class="symbol">In<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="49"> </div></td>
+		      <td class="element post-transition"><div id="Sn" class="symbol">Sn<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="50"> </div></td>
+		      <td class="element metalloid"><div id="Sb" class="symbol">Sb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="51"> </div></td>
+		      <td class="element metalloid"><div id="Te" class="symbol">Te<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="52"> </div></td>
+		      <td class="element non-metal"><div id="I" class="symbol">I<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="53"> </div></td>
+		      <td class="element noble"><div id="Xe" class="symbol">Xe<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="54"> </div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Cs" class="symbol">Cs<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="55"> </div></td>
-		      <td class="element alkaline"><div id="Ba" class="symbol">Ba<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="56"> </div></td>
+		      <td class="element alkali"><div id="Cs" class="symbol">Cs<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="55"> </div></td>
+		      <td class="element alkaline"><div id="Ba" class="symbol">Ba<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="56"> </div></td>
 		      <td class="element star">*<br></td>
-		      <td class="element transition"><div id="Hf"class="symbol">Hf<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="72"> </div></td>
-		      <td class="element transition"><div id="Ta"class="symbol">Ta<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="73"> </div></td>
-		      <td class="element transition"><div id="W"class="symbol">W<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="74"> </div></td>
-		      <td class="element transition"><div id="Re"class="symbol">Re<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="75"> </div></td>
-		      <td class="element transition"><div id="Os"class="symbol">Os<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="76"> </div></td>
-		      <td class="element transition"><div id="Ir"class="symbol">Ir<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="77"> </div></td>
-		      <td class="element transition"><div id="Pt"class="symbol">Pt<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="78"> </div></td>
-		      <td class="element transition"><div id="Au"class="symbol">Au<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="79"> </div></td>
-		      <td class="element post-transition"><div id="Hg" class="symbol">Hg<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="80"> </div></td>
-		      <td class="element post-transition"><div id="Tl" class="symbol">Tl<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="81"> </div></td>
-		      <td class="element post-transition"><div id="Pb" class="symbol">Pb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="82"> </div></td>
-		      <td class="element post-transition"><div id="Bi" class="symbol">Bi<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="83"> </div></td>
-		      <td class="element post-transition"><div id="Po" class="symbol">Po<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="84"> </div></td>
-		      <td class="element metalloid"><div id="At" class="symbol">At<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="85"> </div></td>
-		      <td class="element noble"><div id="Rn" class="symbol">Rn<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="86"> </div></td>
+		      <td class="element transition"><div id="Hf"class="symbol">Hf<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="72"> </div></td>
+		      <td class="element transition"><div id="Ta"class="symbol">Ta<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="73"> </div></td>
+		      <td class="element transition"><div id="W"class="symbol">W<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="74"> </div></td>
+		      <td class="element transition"><div id="Re"class="symbol">Re<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="75"> </div></td>
+		      <td class="element transition"><div id="Os"class="symbol">Os<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="76"> </div></td>
+		      <td class="element transition"><div id="Ir"class="symbol">Ir<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="77"> </div></td>
+		      <td class="element transition"><div id="Pt"class="symbol">Pt<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="78"> </div></td>
+		      <td class="element transition"><div id="Au"class="symbol">Au<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="79"> </div></td>
+		      <td class="element post-transition"><div id="Hg" class="symbol">Hg<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="80"> </div></td>
+		      <td class="element post-transition"><div id="Tl" class="symbol">Tl<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="81"> </div></td>
+		      <td class="element post-transition"><div id="Pb" class="symbol">Pb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="82"> </div></td>
+		      <td class="element post-transition"><div id="Bi" class="symbol">Bi<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="83"> </div></td>
+		      <td class="element post-transition"><div id="Po" class="symbol">Po<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="84"> </div></td>
+		      <td class="element metalloid"><div id="At" class="symbol">At<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="85"> </div></td>
+		      <td class="element noble"><div id="Rn" class="symbol">Rn<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="86"> </div></td>
 		    </tr>
 		    <tr>
-		      <td class="element alkali"><div id="Fr" class="symbol">Fr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="87"> </div></td>
-		      <td class="element alkaline"><div id="Ra" class="symbol">Ra<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="88"> </div></td>
+		      <td class="element alkali"><div id="Fr" class="symbol">Fr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="87"> </div></td>
+		      <td class="element alkaline"><div id="Ra" class="symbol">Ra<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="88"> </div></td>
 		      <td class="element star">**<br></td>
-		      <td class="element transition"><div id="Rf" class="symbol">Rf<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="104"> </div></td>
-		      <td class="element transition"><div id="Db" class="symbol">Db<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="105"> </div></td>
-		      <td class="element transition"><div id="Sg" class="symbol">Sg<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="106"> </div></td>
-		      <td class="element transition"><div id="Bh" class="symbol">Bh<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="107"> </div></td>
-		      <td class="element transition"><div id="Hs" class="symbol">Hs<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="108"> </div></td>
-		      <td class="element unclassified"><div id="Mt" class="symbol">Mt<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="109"> </div></td>
-		      <td class="element unclassified"><div id="Ds" class="symbol">Ds<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="110"> </div></td>
-		      <td class="element unclassified"><div id="Rg" class="symbol">Rg<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="111"> </div></td>
-		      <td class="element post-transition"><div id="Cn" class="symbol">Cn<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="112"> </div></td>
-		      <td class="element unclassified"><div id="Nh" class="symbol">Nh<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="113"> </div></td>
-		      <td class="element unclassified"><div id="Fl" class="symbol">Fl<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="114"> </div></td>
-		      <td class="element unclassified"><div id="Mc" class="symbol">Mc<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="115"> </div></td>
-		      <td class="element unclassified"><div id="Lv" class="symbol">Lv<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="116"> </div></td>
-		      <td class="element unclassified"><div id="Ts" class="symbol">Ts<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="117"> </div></td>
-		      <td class="element unclassified"><div id="Og" class="symbol">Og<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="118"> </div></td>
+		      <td class="element transition"><div id="Rf" class="symbol">Rf<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="104"> </div></td>
+		      <td class="element transition"><div id="Db" class="symbol">Db<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="105"> </div></td>
+		      <td class="element transition"><div id="Sg" class="symbol">Sg<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="106"> </div></td>
+		      <td class="element transition"><div id="Bh" class="symbol">Bh<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="107"> </div></td>
+		      <td class="element transition"><div id="Hs" class="symbol">Hs<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="108"> </div></td>
+		      <td class="element unclassified"><div id="Mt" class="symbol">Mt<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="109"> </div></td>
+		      <td class="element unclassified"><div id="Ds" class="symbol">Ds<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="110"> </div></td>
+		      <td class="element unclassified"><div id="Rg" class="symbol">Rg<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="111"> </div></td>
+		      <td class="element post-transition"><div id="Cn" class="symbol">Cn<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="112"> </div></td>
+		      <td class="element unclassified"><div id="Nh" class="symbol">Nh<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="113"> </div></td>
+		      <td class="element unclassified"><div id="Fl" class="symbol">Fl<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="114"> </div></td>
+		      <td class="element unclassified"><div id="Mc" class="symbol">Mc<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="115"> </div></td>
+		      <td class="element unclassified"><div id="Lv" class="symbol">Lv<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="116"> </div></td>
+		      <td class="element unclassified"><div id="Ts" class="symbol">Ts<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="117"> </div></td>
+		      <td class="element unclassified"><div id="Og" class="symbol">Og<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="118"> </div></td>
 		    </tr>
 		    <tr>
 		       <td class=" separator"><br></td>
@@ -263,41 +269,41 @@
 		    <tr>
 		       <td class="element empty"><br></td>
 		       <td class="element star">*</td>
-		       <td class="element lanthanide"><div id="La" class="symbol">La<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="57"> </div></td>
-		       <td class="element lanthanide"><div id="Ce" class="symbol">Ce<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="58"> </div></td>
-		       <td class="element lanthanide"><div id="Pr" class="symbol">Pr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="59"> </div></td>
-		       <td class="element lanthanide"><div id="Nd" class="symbol">Nd<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="60"> </div></td>
-		       <td class="element lanthanide"><div id="Pm" class="symbol">Pm<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="61"> </div></td>
-		       <td class="element lanthanide"><div id="Sm" class="symbol">Sm<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="62"> </div></td>
-		       <td class="element lanthanide"><div id="Eu" class="symbol">Eu<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="63"> </div></td>
-		       <td class="element lanthanide"><div id="Gd" class="symbol">Gd<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="64"> </div></td>
-		       <td class="element lanthanide"><div id="Tb" class="symbol">Tb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="65"> </div></td>
-		       <td class="element lanthanide"><div id="Dy" class="symbol">Dy<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="66"></div></td>
-		       <td class="element lanthanide"><div id="Ho" class="symbol">Ho<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="67"> </div></td>
-		       <td class="element lanthanide"><div id="Er" class="symbol">Er<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="68"> </div></td>
-		       <td class="element lanthanide"><div id="Tm" class="symbol">Tm<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="69"> </div></td>
-		       <td class="element lanthanide"><div id="Yb" class="symbol">Yb<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="70"> </div></td>
-		       <td class="element lanthanide"><div id="Lu" class="symbol">Lu<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="71"> </div></td>
+		       <td class="element lanthanide"><div id="La" class="symbol">La<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="57"> </div></td>
+		       <td class="element lanthanide"><div id="Ce" class="symbol">Ce<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="58"> </div></td>
+		       <td class="element lanthanide"><div id="Pr" class="symbol">Pr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="59"> </div></td>
+		       <td class="element lanthanide"><div id="Nd" class="symbol">Nd<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="60"> </div></td>
+		       <td class="element lanthanide"><div id="Pm" class="symbol">Pm<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="61"> </div></td>
+		       <td class="element lanthanide"><div id="Sm" class="symbol">Sm<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="62"> </div></td>
+		       <td class="element lanthanide"><div id="Eu" class="symbol">Eu<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="63"> </div></td>
+		       <td class="element lanthanide"><div id="Gd" class="symbol">Gd<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="64"> </div></td>
+		       <td class="element lanthanide"><div id="Tb" class="symbol">Tb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="65"> </div></td>
+		       <td class="element lanthanide"><div id="Dy" class="symbol">Dy<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="66"></div></td>
+		       <td class="element lanthanide"><div id="Ho" class="symbol">Ho<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="67"> </div></td>
+		       <td class="element lanthanide"><div id="Er" class="symbol">Er<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="68"> </div></td>
+		       <td class="element lanthanide"><div id="Tm" class="symbol">Tm<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="69"> </div></td>
+		       <td class="element lanthanide"><div id="Yb" class="symbol">Yb<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="70"> </div></td>
+		       <td class="element lanthanide"><div id="Lu" class="symbol">Lu<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="71"> </div></td>
 		       <td class="element empty"><br></td>
 		    </tr>
 		    <tr>
 		      <td class="element empty"><br></td>
 		      <td class="element star">**<br></td>
-		      <td class="element actinide"><div id="Ac" class="symbol">Ac<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="89"> </div></td>
-		      <td class="element actinide"><div id="Th" class="symbol">Th<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="90"> </div></td>
-		      <td class="element actinide"><div id="Pa" class="symbol">Pa<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="91"> </div></td>
-		      <td class="element actinide"><div id="U" class="symbol">U<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="92"> </div></td>
-		      <td class="element actinide"><div id="Np" class="symbol">Np<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="93"> </div></td>
-		      <td class="element actinide"><div id="Pu" class="symbol">Pu<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="94"> </div></td>
-		      <td class="element actinide"><div id="Am" class="symbol">Am<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="95"> </div></td>
-		      <td class="element actinide"><div id="Cm" class="symbol">Cm<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="96"> </div></td>
-		      <td class="element actinide"><div id="Bk" class="symbol">Bk<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="97"> </div></td>
-		      <td class="element actinide"><div id="Cf" class="symbol">Cf<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="98"> </div></td>
-		      <td class="element actinide"><div id="Es" class="symbol">Es<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="99"> </div></td>
-		      <td class="element actinide"><div id="Fm" class="symbol">Fm<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="100"> </div></td>
-		      <td class="element actinide"><div id="Md" class="symbol">Md<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="101"> </div></td>
-		      <td class="element actinide"><div id="No" class="symbol">No<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="102"> </div></td>
-		      <td class="element actinide"><div id="Lr" class="symbol">Lr<br><input name="chk" type="checkbox" onchange="check()" id="unchk" value="103"> </div></td>
+		      <td class="element actinide"><div id="Ac" class="symbol">Ac<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="89"> </div></td>
+		      <td class="element actinide"><div id="Th" class="symbol">Th<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="90"> </div></td>
+		      <td class="element actinide"><div id="Pa" class="symbol">Pa<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="91"> </div></td>
+		      <td class="element actinide"><div id="U" class="symbol">U<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="92"> </div></td>
+		      <td class="element actinide"><div id="Np" class="symbol">Np<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="93"> </div></td>
+		      <td class="element actinide"><div id="Pu" class="symbol">Pu<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="94"> </div></td>
+		      <td class="element actinide"><div id="Am" class="symbol">Am<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="95"> </div></td>
+		      <td class="element actinide"><div id="Cm" class="symbol">Cm<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="96"> </div></td>
+		      <td class="element actinide"><div id="Bk" class="symbol">Bk<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="97"> </div></td>
+		      <td class="element actinide"><div id="Cf" class="symbol">Cf<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="98"> </div></td>
+		      <td class="element actinide"><div id="Es" class="symbol">Es<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="99"> </div></td>
+		      <td class="element actinide"><div id="Fm" class="symbol">Fm<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="100"> </div></td>
+		      <td class="element actinide"><div id="Md" class="symbol">Md<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="101"> </div></td>
+		      <td class="element actinide"><div id="No" class="symbol">No<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="102"> </div></td>
+		      <td class="element actinide"><div id="Lr" class="symbol">Lr<br><input name="chk" type="checkbox" class="off" onchange="check()" id="unchk" value="103"> </div></td>
 		       <td class="element empty"><br>
 		      </td>
 		    </tr>
@@ -311,7 +317,7 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
 			<button class="btn btn-success" id="button-a" onlick="popup()" style="margin:5px;">Submit</button><emsp>
-			<button class="btn btn-danger" type="button" class="uncheck" style="margin:5px;">Reset</button>
+			<button class="uncheck btn btn-danger" type="button" style="margin:5px;">Reset</button>
 		</div>
 			<script src="/static/alert.js">
 			//$('#button-a').click(function(){
@@ -347,16 +353,14 @@
 		<hr>
 		<center>
 			
-			<div class="alert alert-info">
-				<strong>Info!</strong> Select upto three elements.
-			  </div>
-			<div id="succeess" class="alert alert-success" role="alert" style="display:none;"></div>
+			
 
 			<!--We will display our result over-->
 			<!--This is called a BOOTSRAP alert-->
 			
 		<div class="alert alert-success">
 				<div id="result">
+					<strong>Please Cite Our Work!</strong> <br>The result will be displayed here
 				</div>
 
 			  </div>
