@@ -46,9 +46,26 @@ def process():
 		#print(type(clicked))
 		first = clicked.split(";")[0]
 		second = clicked.split(";")[1]
-		third = clicked.split(";")[2]
 
-		sums = 3 + int(first) + int(second) + int(third)
+		sums = 2 + int(first) + int(second)
+		print(sums)
+		return json.dumps({"sum" : sums})
+
+@app.route("/process2", methods=["POST"])
+def process2():
+	if request.method == "POST":
+		clicked=request.form['data']
+    	# sum=render.add(a,b,c)
+		#print(clicked)
+		#print(type(clicked))
+		first = clicked.split(";")[0]
+		second = clicked.split(";")[1]
+
+		sums = 2 + int(first) + int(second)
+
+		third = clicked.split(";")[2]
+		sums = 1 + sums + int(third)
+
 		print(sums)
 		return json.dumps({"sum" : sums})
 
