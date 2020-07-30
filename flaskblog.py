@@ -48,7 +48,7 @@ def process():
 		second = clicked.split(";")[1]
 		third = clicked.split(";")[2]
 
-		sums = int(first) + int(second) + int(third)
+		sums = int(first) + int(second) + int(third)+3
 		print(sums)
 		return json.dumps({"sum" : sums})
 
