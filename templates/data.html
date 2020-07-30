@@ -20,17 +20,52 @@
 			console.log("Checkbox has been acquired");          
 			var tot = 0;
 			var i = -1;
+			var data = "";
 			for(k=0;k< chklength;k++) {
+
+				if (tot > 2) { 
+					//chk_arr[i].checked = false; 
+					console.log("Checkbox limit exceeded"); 
+
+
+					var categories = $('#unchk');
+  					categories.prop('disabled', !categories.prop('disabled'));
+
+
+					//document.getElementsByName("chk").disabled = true;
+					console.log(data)
+					$.ajax({
+					type : 'POST',
+					url : "{{url_for('process')}}",
+					data : {'data' : data},
+					
+					success: function(data) {
+					
+						//console.log(data) 
+						json=JSON.parse(data);
+						console.log(json)
+						$('#result').html(json['sum']);
+
+
+			}
+			});
+
+
+
+				}
+
+
 				if (chk_arr[k].checked) { 
+
+					console.log(chk_arr[k].checked)
 					tot++; 
 					console.log("Checkbox added to array");
+					console.log(k)
+					data = data + k +';';
+
 					if (i < 0) i = k;
 				}
-				if (tot > 3) { 
-					chk_arr[i].checked = false; 
-					console.log("Checkbox limit exceeded"); 
-					document.getElementsByName("chk").disabled = true;
-				}
+			
 			} 
 		}
 		//	$('input:checkbox').on('click',function () {
@@ -319,10 +354,12 @@
 
 			<!--We will display our result over-->
 			<!--This is called a BOOTSRAP alert-->
-			<div id="result"></div>
-			<!--<div class="alert alert-success">
-				<strong>Success!</strong> The answer is:
-			  </div>-->
+			
+		<div class="alert alert-success">
+				<div id="result">
+				</div>
+
+			  </div>
 
 		</center>
 		<!-- <input type="button" value="RESET" id="myCheck" class="uncheck">
@@ -373,7 +410,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script>
+<!--<script>
 	$('input:checkbox').change(function () {
 		//var X[]={};
 		//for(i=0; i<3;i++)
@@ -381,20 +418,10 @@
 			var Z = $(this).val();
 			//X[i]=Z;
 			console.log("Element with Atomic Number " + Z + " has been acquired");
-			$.ajax({
-					type : 'POST',
-					url : "{{url_for('process')}}",
-					data : {'data' : Z},
-					
-					success: function(data) {
-					
-						//console.log(data) 
-						json=JSON.parse(data);
-			}
-			});
+			
 		//}
 	});
-</script>
+</script> -->
 {% endblock content %}
 
 <!--{% block script %}

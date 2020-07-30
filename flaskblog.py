@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request, jsonify, make_response
 import render
+import json
 
 app = Flask(__name__)
 
@@ -41,8 +42,15 @@ def process():
 	if request.method == "POST":
 		clicked=request.form['data']
     	# sum=render.add(a,b,c)
-		print(clicked)
-		return json.dumps({options})
+		#print(clicked)
+		#print(type(clicked))
+		first = clicked.split(";")[0]
+		second = clicked.split(";")[1]
+		third = clicked.split(";")[2]
+
+		sums = int(first) + int(second) + int(third)
+		print(sums)
+		return json.dumps({"sum" : sums})
 
 if __name__ == "__main__":
     app.run(debug=True)
