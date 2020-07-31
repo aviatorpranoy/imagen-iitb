@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify, make_response
+from flask import Flask, render_template, url_for, request, jsonify, make_response, session
 import render, json
 
 app = Flask(__name__)
@@ -17,6 +17,7 @@ posts = [
 		'date_posted': 'July 25, 2020'
 	}
 ]
+
 sums=0
 
 @app.route("/")
@@ -49,6 +50,8 @@ def process():
 		
 		a=int(first)
 
+		session['first'] = a
+
 		sums = a
 		print(type(sums))
 		#print(type(sums))
@@ -58,39 +61,46 @@ def process():
 
 @app.route("/process1", methods=["POST"])
 def process1():
-	print("process1 is called")
+	
 	if request.method == "POST":
+		print("process1 is called")
 		clicked=request.form['data']
     	# sum=render.add(a,b,c)
 		#print(clicked)
 		#print(type(clicked))
-
-		second = clicked.split(";")[1]
+		print(clicked)
+		second = clicked.split(";")[0]
 		b=int(second)
-		copya=sums
+		#session['second'] = b
+		copya=session['first']
+		#session.pop('first', None)
 		
 		sums = render.execute2(copya, b)
 		print(type(sums))
 		#print(type(sums))
 		#def display(sums):
 		print(sums)
+		session['secondsum'] = sums
 		return json.dumps({"sum" : sums})
 
 @app.route("/process2", methods=["POST"])
 def process2():
-	print("process2 is called")
+	
 	if request.method == "POST":
+		print("process2 is called")
 		clicked=request.form['data']
     	# sum=render.add(a,b,c)
 		#print(clicked)
 		#print(type(clicked))
 		#first = clicked.split(";")[0]
 		#second = clicked.split(";")[1]
-		third = clicked.split(";")[2]
+		third = clicked.split(";")[0]
 		print(type(third))
 		c=int(third)
 		print(type(c))
-		d=sums
+		d=session['secondsum']
+		session.pop('first', None)
+		session.pop('secondsum', None)
 
 		sums = render.execute3(c,d)
 		print(type(sums))
@@ -98,6 +108,9 @@ def process2():
 		#console.log(sums)
 		print(sums)
 		return json.dumps({"sum" : sums})
+
+
+app.secret_key = "iimb"
 
 if __name__ == "__main__":
     app.run(debug=True)
