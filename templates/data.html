@@ -23,11 +23,29 @@
 			count = 0;
 			data = [];
 		} 
+		function popup()
+		{
+			document.getElementById("warning").style.display = "none";
+			document.getElementById("result").style.display = "block";
+			//var x = document.getElementById("result");
+			//x.style.display = "none";
+			//var y = document.getElementById("warning");
+			//y.style.display = "block";
+			//if (x.style.display === "none") {
+			//	x.style.display = "block";
+			//} else {
+			//	x.style.display = "none";
+			//}
+		}
 		function check(identity) 
 		{
 			var x =  document.getElementsByName("chk");
 			var len = x.length;   
-			console.log("Start");          
+			console.log("Start");    
+			var y = document.getElementById("result");
+			y.style.display = "block"
+			//var y = document.getElementById("warning");
+			//y.style.display = "none";      
 			
 			for(k=0;k<len;k++) 
 			{
@@ -35,6 +53,8 @@
 				{ 
 					//console.log(x[k].checked)
 					//count++; 
+					document.getElementById("warning").style.display = "block";
+					document.getElementById("result").style.display = "none";
 					console.log("Value of x[k] " + x[k].value);
 					data[count] = parseInt(identity) ;
 					console.log("Element added to array: " + data[count]);
@@ -392,13 +412,17 @@
 
 			<!--We will display our result over-->
 			<!--This is called a BOOTSRAP alert-->
-			
+		
+		<div class="alert alert-warning">
+			<div id="warning">
+				<strong>Please Cite Our Work!</strong> <br>The result will be displayed here
+			</div>
+		</div>
 		<div class="alert alert-success">
-				<div id="result">
-					<strong>Please Cite Our Work!</strong> <br>The result will be displayed here
-				</div>
-
-			  </div>
+			<div id="result">
+				<!--<strong>Please Cite Our Work!</strong> <br>The result will be displayed here-->
+			</div>
+		</div>
 
 		</center>
 		<!-- <input type="button" value="RESET" id="myCheck" class="uncheck">
@@ -413,12 +437,12 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
 			
-			<button class="btn btn-success" id="button-a" onlick="popup()" style="margin:5px;">Submit</button><emsp>
+			<button class="btn btn-success" id="button-a" onclick="popup()" style="margin:5px;">Submit</button><emsp>
 			<button class="uncheck btn btn-danger" type="button" style="margin:5px;" onclick="initialize()">Reset</button><br><br>
 			<input type="button" class="btn btn-info" onclick="location.href='https://doi.org/10.1016/j.mtla.2019.100435';" value="Cite Us" />
 		</div>
 		<hr>
-			<script src="/static/alert.js">
+			<!--<script src="/static/alert.js">
 			//$('#button-a').click(function(){
 			//	function popup(){
 			//		swal("Hello World");
@@ -447,7 +471,7 @@
 					//	button: "Aww yiss!",
 					//	});
 				//}//
-			</script>
+			</script>-->
 		</center>
 
 		<h2>Alloy, Compound, Coarse-Grained and Fictional Data</h2>
