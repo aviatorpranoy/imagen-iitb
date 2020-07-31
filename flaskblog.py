@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request, jsonify, make_response
-import render
-import json
+import render, json
 
 app = Flask(__name__)
 
@@ -18,6 +17,7 @@ posts = [
 		'date_posted': 'July 25, 2020'
 	}
 ]
+sums=0
 
 @app.route("/")
 @app.route("/home")
@@ -39,33 +39,63 @@ def test():
 
 @app.route("/process", methods=["POST"])
 def process():
+	print("process is called")
 	if request.method == "POST":
 		clicked=request.form['data']
     	# sum=render.add(a,b,c)
 		#print(clicked)
 		#print(type(clicked))
 		first = clicked.split(";")[0]
-		second = clicked.split(";")[1]
+		
+		a=int(first)
 
-		sums = 2 + int(first) + int(second)
+		sums = a
+		print(type(sums))
+		#print(type(sums))
+		#def display(sums):
+		print(sums)
+		return json.dumps({"sum" : sums})
+
+@app.route("/process1", methods=["POST"])
+def process1():
+	print("process1 is called")
+	if request.method == "POST":
+		clicked=request.form['data']
+    	# sum=render.add(a,b,c)
+		#print(clicked)
+		#print(type(clicked))
+
+		second = clicked.split(";")[1]
+		b=int(second)
+		copya=sums
+		
+		sums = render.execute2(copya, b)
+		print(type(sums))
+		#print(type(sums))
+		#def display(sums):
 		print(sums)
 		return json.dumps({"sum" : sums})
 
 @app.route("/process2", methods=["POST"])
 def process2():
+	print("process2 is called")
 	if request.method == "POST":
 		clicked=request.form['data']
     	# sum=render.add(a,b,c)
 		#print(clicked)
 		#print(type(clicked))
-		first = clicked.split(";")[0]
-		second = clicked.split(";")[1]
-
-		sums = 2 + int(first) + int(second)
-
+		#first = clicked.split(";")[0]
+		#second = clicked.split(";")[1]
 		third = clicked.split(";")[2]
-		sums = 1 + sums + int(third)
+		print(type(third))
+		c=int(third)
+		print(type(c))
+		d=sums
 
+		sums = render.execute3(c,d)
+		print(type(sums))
+		print(sums)
+		#console.log(sums)
 		print(sums)
 		return json.dumps({"sum" : sums})
 
