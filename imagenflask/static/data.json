@@ -1,0 +1,199 @@
+[
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Helium",
+        "Z": 2,
+    },
+    {
+        "ele":"Lithium",
+        "Z": 3,
+    },
+    {
+        "ele":"Berrylium",
+        "Z": 4,
+    },
+    {
+        "ele":"Boron",
+        "Z": 5,
+    },
+    {
+        "ele":"Carbon",
+        "Z": 6,
+    },
+    {
+        "ele":"Nitrogen",
+        "Z": 7,
+    },
+    {
+        "ele":"Oxygen",
+        "Z": 8,
+    },
+    {
+        "ele":"Fluorine",
+        "Z": 9,
+    },
+    {
+        "ele":"Neon",
+        "Z": 10,
+    },
+    {
+        "ele":"Sodium",
+        "Z": 11,
+    },
+    {
+        "ele":"Magnesium",
+        "Z": 12,
+    },
+    {
+        "ele":"Aluminium",
+        "Z": 13,
+    },
+    {
+        "ele":"Silicon",
+        "Z": 14,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 15,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 16,
+    },
+    {
+        "ele":"Chlorine",
+        "Z": 17,
+    },
+    {
+        "ele":"Argon",
+        "Z": 18,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 19,
+    },
+    {
+        "ele":"Calcium",
+        "Z": 20,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 21,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 22,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 23,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 24,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 25,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 26,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 27,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 28,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    },
+    {
+        "ele":"Hydrogen",
+        "Z": 1,
+    }
+]
+
+//$(doc).ready(function(){
+  //  $('submit').on('submit',function(event) {
+    //    $.ajax({
+      //      data:{
+        //        ele: $('#ele').val()
+          //  },
+            //type: 'POST',
+            //url: '/process'
+        //})
+        //event.preventDefault();
+    //})
+//});

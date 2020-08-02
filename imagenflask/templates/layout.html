@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This repository provides a source for interatomic potentials (force fields), related files, and evaluation tools to help researchers obtain interatomic models and judge their quality and applicability. Users are encouraged to download and use interatomic potentials, with proper acknowledgement, and developers are welcome to contribute potentials for inclusion. The files provided have been submitted or vetted by their developers and appropriate references are provided. All classes of potentials (e.g., MEAM, ADP, COMB, Reax, EAM, etc.) and materials are welcome. Interatomic potentials and/or related files are currently available for various metals, semiconductors, oxides, and carbon-containing systems."/>
+    <meta name="author" content="Pranoy Ray"/>
+    <meta name="author" content="Alankar Alankar"/>
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='button.css') }}">-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />    
+    
+    <!--Usage of the Reset Button (re-enable and uncheck all)-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+
+      $(document).ready(function(){
+        
+        //$(".check").click(function(){
+
+          //$("#unchk").prop("checked", true);
+
+        //});
+        
+        $(".uncheck").click(function(){
+          console.log("Reset button clicked");
+          //$("#unchk").prop("checked", false);
+          //document.getElementById('unchk').disabled=false;
+          $('input[type=checkbox]').prop('disabled',false);
+          $('input[type=checkbox]').prop('checked',false);
+          $('#result').html("<strong>Please Cite Our Work!</strong> <br>The result will be displayed here");
+        });
+
+        
+      
+      });
+      
+    </script>
+    
+    <!-- Periodic Table -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='pt.css') }}"/>
+
+    {% if title %}
+        <title>IMaGen Lab - {{ title }}</title>
+    {% else %}
+        <title>IMaGen Lab</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Materials Informatics</a>
+          <!--<a class="navbar-brand mr-4" href="/">Materials Informatics</a>-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('data') }}">Data</a>
+              <a class="nav-item nav-link" href="{{ url_for('blog') }}">Blog</a>
+              <a class="nav-item nav-link" href="{{ url_for('res') }}">Resources</a>
+              <a class="nav-item nav-link" href="{{ url_for('forum') }}">Forum</a>
+              <a class="nav-item nav-link" href="{{ url_for('team') }}">Team</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+     <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <center><h3>Discover & Design Materials</h3></center>
+            <center><p class='text-muted'>Let's progress together
+              <ul class="list-group">
+              <li class="list-group-item list-group-item-light"><a href="">Data Science, AI and ML</a></li>
+              <li class="list-group-item list-group-item-light"><a href="">Multiscale Mechanics</a></li>
+              <li class="list-group-item list-group-item-light"><a href="">Material Design</a></li>
+              <li class="list-group-item list-group-item-light"><a href="https://www.me.iitb.ac.in/~alankar/">IMaGen Lab</a></li>
+            </ul>
+            </p>
+          </center>
+          </div>
+          <div class="content-section">
+            <center><h3>Enquiries & Feedback</h3></center>
+            <center><p class='text-muted'>We'd like to  hear from you.
+              <ul class="list-group">
+              <li class="list-group-item list-group-item-light"><a href="">Raise a Concern</a></li>
+              <li class="list-group-item list-group-item-light"><a href="">Add more data</a></li>
+              <li class="list-group-item list-group-item-light"><a href="">Report Incorrect Data</a></li>
+              <li class="list-group-item list-group-item-light"><a href="">Feedback</a></li>
+            </ul>
+            </p>
+          </center>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <div class="footer">
+	   <p></p>
+	   <!--<p><b><u><a href="contact.html">Contact Pranoy now!</a></b></u></p>-->
+	   <p><center><a href="{{ url_for('home') }}">Materials Informatics</a><br>© Copyright 2020 | All Rights Reserved</center></p>
+	   <p></p>
+	</div> 
+    <!--<footer>
+    	<center>© Copyright 2020 Alankar - All Rights Reserved</center>
+    </footer>-->
+    <!--<section once="footers" class="cid-rzvQMfc2s9" id="footer6-1q">
+	    <div class="container">
+	        <div class="media-container-row align-center mbr-white">
+	            <div class="col-12">
+	                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+	                    <center>© Copyright 2020 Alankar - All Rights Reserved</center></p>
+	            </div>
+	        </div>
+	    </div>
+	</section>-->
+</body>
+</html>
