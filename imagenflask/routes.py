@@ -1,29 +1,16 @@
 import os
 import secrets
 from PIL import Image
-from flask import render_template, url_for, flash, request, jsonify, make_response, session, redirect
+from flask import render_template, url_for, flash, abort, request, jsonify, make_response, session, redirect
 from imagenflask import app, db, bcrypt
 from imagenflask import forms,render,models
 import json
-from imagenflask.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from imagenflask.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from imagenflask.render import execute2, execute3
 from imagenflask.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-	{
-		'author': 'Ankur Gurjar ',
-		'title': 'The Buzzing Field of Materials Informatics',
-		'content': 'Materials Informatics is an amalgamation of the field of materials science and informatics, in order to aid the use, selection, development, and discovery of materials. ',
-		'date_posted': 'July 25, 2020'
-	},
-	{
-		'author': 'Pranoy',
-		'title': 'Welcome',
-		'content': 'You are definitely going to find the most amazing content on the Mechanical properties of various materials on this website.' ,
-		'date_posted': 'April 3, 2020'
-	}
-]
+
 
 sums=0
 
@@ -34,17 +21,21 @@ def home():
 
 @app.route("/data")
 def data():
-    return render_template('blog.html', posts=posts, title='Data')
+    return render_template('data.html', title='Data')
 
 @app.route("/blog")
+@login_required
 def blog():
+    posts = Post.query.all()
     return render_template('blog.html', posts=posts, title='Blog')
 
 @app.route("/res")
+@login_required
 def res():
     return render_template('res.html', title='Resources')
 
 @app.route("/forum")
+@login_required
 def forum():
     return render_template('blog.html', posts=posts, title='Forum')
 
@@ -194,6 +185,56 @@ def account():
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
 
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('blog'))
+    return render_template('create_post.html', title='New Post',
+                           form=form, legend='New Post')
+
+
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post)
+
+
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_post.html', title='Update Post',
+                           form=form, legend='Update Post')
+
+
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('home'))
 
 
 
