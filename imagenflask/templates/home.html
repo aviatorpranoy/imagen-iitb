@@ -72,8 +72,7 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-              <!--<a class="nav-item nav-link" href="{{ url_for('data') }}">Data</a>
-              -->
+              <a class="nav-item nav-link" href="{{ url_for('data') }}">Data</a>
               <a class="nav-item nav-link" href="{{ url_for('res') }}">Resources</a>
               <a class="nav-item nav-link" href="{{ url_for('blog') }}">Blog</a>
               <a class="nav-item nav-link" href="{{ url_for('forum') }}">Forum</a>
@@ -655,7 +654,7 @@
     <div class="footer">
 	   <p></p>
 	   <!--<p><b><u><a href="contact.html">Contact Pranoy now!</a></b></u></p>-->
-	   <p><center>© Copyright 2020 Alankar - All Rights Reserved</center></p>
+	   <p><center><a href="{{ url_for('home') }}">Materials Informatics</a><br>© Copyright 2020 | All Rights Reserved</center></p>
 	   <p></p>
 	</div> 
     <!--<footer>
