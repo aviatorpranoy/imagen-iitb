@@ -20,24 +20,22 @@ def home():
     return render_template('home.html')
 
 @app.route("/data")
+@login_required
 def data():
     return render_template('data.html', title='Data')
 
 @app.route("/blog")
-@login_required
 def blog():
     posts = Post.query.all()
     return render_template('blog.html', posts=posts, title='Blog')
 
 @app.route("/res")
-@login_required
 def res():
     return render_template('res.html', title='Resources')
 
 @app.route("/forum")
-@login_required
 def forum():
-    return render_template('blog.html', posts=posts, title='Forum')
+    return render_template('forum.html', title='Forum')
 
 @app.route("/team")
 def team():
@@ -139,7 +137,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('account'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
