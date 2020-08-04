@@ -1,19 +1,71 @@
 {% extends "layout.html" %}
 {% block content %}
-	<span><iframe id="forum_embed" 
+	<article class="media content-section">
+		<iframe id="forum_embed"
+		  src="javascript:void(0)"
+		  scrolling="no"
+		  frameborder="0"
+		  width="704"
+		  height="804">
+		</iframe>
+		<script type="text/javascript">
+		  document.getElementById('forum_embed').src =
+		     'http://groups.google.com/forum/embed/?place=forum/flasktestiitb/'
+		     + '&showsearch=true&showpopout=true&showtabs=false'
+		     + '&parenturl=' + encodeURIComponent(window.location.href);
+		</script>
+
+
+
+		<!--Firefox-->
+		<!--<iframe id="forum_embed" 
  src="javascript:void(0)" 
  scrolling="no" 
  frameborder="0" 
  width="704" 
- height="1500"> 
+ height="704" importance="high" > 
 </iframe> 
 <script type="text/javascript"> 
  document.getElementById("forum_embed").src = 
-  "https://groups.google.com/forum/embed/?place=forum/flasktestiitb" 
-  "&amp;showsearch=true&amp;showpopout=true&amp;parenturl=" 
+  "http://groups.google.com/forum/embed/?place=forum/flasktestiitb" +
+  "&amp;showsearch=true&amp;showpopout=true&amp&showtabs=false;parenturl=" +
 encodeURIComponent(window.location.href); 
-</script></span>
+</script><br>-->
+<!--Chrome<iframe id="forum_embed" 
+ src="javascript:void(0)" 
+ scrolling="no" 
+ frameborder="0" 
+ width="704" 
+ height="704" importance="high" > 
+</iframe> 
+<script type="text/javascript"> 
+ document.getElementById('forum_embed').src =
+ 'http://groups.google.com/forum/embed/?place=forum/flasktestiitb'
+ + '&showsearch=true&showpopout=true&showtabs=false'
+ + '&parenturl=' + encodeURIComponent(window.location.href);
+</script>-->
+	</article>
+
 	<!--<<div>
+
+
+	 <iframe id="forum_embed"
+        src="javascript:void(0)"
+        scrolling="no"
+        frameborder="0"
+        width="900"
+        height="700">
+  </iframe>
+  <script type="text/javascript">
+   document.getElementById('forum_embed').src =
+ 'https://groups.google.com/forum/embed/?place=forum/test-distance'
+ + '&showsearch=true&showpopout=true&showtabs=false'
+ + '&parenturl=' + encodeURIComponent(window.location.href);
+  </script>
+  </div>
+
+
+
 		<iframe id="forum_embed"
               src="javascript:void(0)"
               scrolling="no"
