@@ -1,6 +1,7 @@
 from functools import wraps
 import os, sys
 import secrets
+from datetime import date
 from functools import wraps
 from PIL import Image
 from flask import render_template, url_for, flash, abort, request, jsonify, make_response, session, redirect
@@ -244,13 +245,15 @@ def new_post():
         #get the request data
         title = request.form["title"]
         content = request.form["content"]
-
+        author = request.form["author"]
+        timing = date.today() 
         post = {
           "title": title,
           "content": content,
-          "author": session["username"]
+          "author": author,
+          "timing": timing
         }
-
+        print(post)
         try:
           #print(title, content, file=sys.stderr)
           #push the post object to the database
@@ -349,11 +352,19 @@ def data():
 
 @app.route("/blog")
 def blog():
-    posts = db.child('posts').get()
-    if posts.val() == None:
-        return render_template('blog.html', title='Blog')
-    else:    
-        return render_template('blog.html', posts=posts, title='Blog')
+    allposts = db.child("Posts").get()
+    #print(allposts.val(), file=sys.stderr)
+    if allposts.val() == None:
+      #print(posts, file=sys.stderr)
+      return render_template("blog.html")
+    else:
+      return render_template("blog.html", posts=allposts, title='Blog')
+    
+#posts = db.child('posts').get()
+#if posts.val() == None:
+#return render_template('blog.html', title='Blog')
+#else:    
+#return render_template('blog.html', posts=posts, title='Blog')
 
 @app.route("/res")
 def res():
