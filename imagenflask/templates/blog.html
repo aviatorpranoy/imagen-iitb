@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 	<!--<div class="col-md-8">-->
-	{% for post in posts%}
+	<!--{% for post in posts%}
 		<article class="media content-section">
 			<img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
 		  <div class="media-body">
@@ -13,7 +13,22 @@
 		    <p class="article-content">{{ post.content }}</p>
 		  </div>
 		</article>
-	 {% endfor %}
+	 {% endfor %}-->
+	{% for p in data %}
+        <div class="single">
+            <p class="title">{{p.val().title}}</p>
+            <p>{{p.val().author}}</p>
+
+            <div>{{p.val().content}}</div>
+            
+            {% if session["usr"] %}
+                {% if session["email"] == p.val().author %}
+                <a href="/edit/{{p.key()}}">Edit Post</a>
+                {% endif %}
+            {% endif %}
+
+        </div>
+   	{% endfor %}
 	<!--</div>
 <div class="col-md-4">
 <div class="content-section">

@@ -4,8 +4,8 @@
       <div class="media">
         <img class="rounded-circle account-img" src="{{ image_file }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ current_user.username }}</h2>
-          <p class="text-secondary">{{ current_user.email }}</p>
+          <h2 class="account-heading">{{ form.username.data }}</h2>
+          <p class="text-secondary">{{ session["email"] }}</p>
         </div>
       </div>
         <form method="POST" action="" enctype="multipart/form-data">
@@ -24,6 +24,20 @@
                         </div>
                     {% else %}
                         {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.affiliation.label(class="form-control-label") }}
+
+                    {% if form.affiliation.errors %}
+                        {{ form.affiliation(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.affiliation.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.affiliation(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
                 <div class="form-group">

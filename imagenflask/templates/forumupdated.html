@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+	<center>
 	<article class="media content-section">
 		<!--<iframe id="forum_embed"
 		  src="javascript:void(0)"
@@ -13,32 +14,27 @@
 		     'http://groups.google.com/forum/embed/?place=forum/flasktestiitb/'
 		     + '&showsearch=true&showpopout=true&showtabs=false'
 		     + '&parenturl=' + encodeURIComponent(window.location.href);
-		</script>-->
-<system.webServer>
-     <httpProtocol allowKeepAlive="true" >
-       <customHeaders>
-         <add name="X-Frame-Options" value="*" />
-       </customHeaders>
-     </httpProtocol>
- </system.webServer>
-		<center>
-			<iframe id="forum_embed" 
- src="javascript:void(0)" 
- scrolling="no" 
- frameborder="0" 
- width="704" 
- height="804" importance="high" > 
-</iframe> 
-<script type="text/javascript"> 
- document.getElementById("forum_embed").src = 
-  "http://groups.google.com/forum/embed/?place=forum/flasktestiitb" +
-  "&amp;showsearch=true&amp;showpopout=true&amp&showtabs=false;parenturl=" +
-encodeURIComponent(window.location.href); 
+		</script>
+		</center>-->
+		<!--
+			<iframe id="forum_embed" src="https://groups.google.com/forum/embed/?place=forum/flasktestiitb#!forum/flasktestiitb" scrolling="no" frameborder="0" width="704" height="804"></iframe>
+		
+
+			<iframe scrolling="no" frameborder="0" width="704" height="804" src="http://flaskiitbtest.forumotion.com"></iframe></center>-->
+
+			<iframe id="forum_embed"
+  src="javascript:void(0)"
+  scrolling="no"
+  frameborder="0"
+  width="900"
+  height="700">
+</iframe>
+<script type="text/javascript">
+  document.getElementById('forum_embed').src =
+     'https://groups.google.com/forum/embed/?place=forum/flasktestiitb/'
+     + '&showsearch=true&showpopout=true&showtabs=false'
+     + '&parenturl=' + encodeURIComponent(window.location.href);
 </script>
-		</center>
-
-			<!--<iframe scrolling="no" frameborder="0" width="704" height="804" src="http://flaskiitbtest.forumotion.com"></iframe></center>-->
-
 
 		<!--Firefox-->
 		<!--<iframe id="forum_embed" 

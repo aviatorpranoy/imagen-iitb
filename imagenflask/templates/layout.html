@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="This repository provides a source for interatomic potentials (force fields), related files, and evaluation tools to help researchers obtain interatomic models and judge their quality and applicability. Users are encouraged to download and use interatomic potentials, with proper acknowledgement, and developers are welcome to contribute potentials for inclusion. The files provided have been submitted or vetted by their developers and appropriate references are provided. All classes of potentials (e.g., MEAM, ADP, COMB, Reax, EAM, etc.) and materials are welcome. Interatomic potentials and/or related files are currently available for various metals, semiconductors, oxides, and carbon-containing systems."/>
+    <meta http-equiv="X-Frame-Options" content="deny">
     <meta name="author" content="Pranoy Ray"/>
     <meta name="author" content="Alankar Alankar"/>
     <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='button.css') }}">-->
@@ -21,6 +22,9 @@
       })(window,document,'https://pranoyflask.tribe.so');
     </script>
 
+
+
+    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -94,7 +98,7 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
+              {% if session["usr"] %}
                 <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
                 <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
