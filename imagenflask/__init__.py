@@ -1,7 +1,6 @@
 from flask import Flask
-import pyrebase
+from pyrebase import pyrebase
 from flask_login import LoginManager
-from flask_cors import CORS
 
 app = Flask(__name__)
 

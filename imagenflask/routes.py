@@ -3,7 +3,6 @@ import os, sys
 import secrets
 from datetime import date
 from functools import wraps
-from PIL import Image
 from flask import render_template, url_for, flash, abort, request, jsonify, make_response, session, redirect
 from imagenflask import app
 from imagenflask import forms,render,models
@@ -14,7 +13,8 @@ from imagenflask.render import execute2, execute3
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_login import LoginManager
 import pyrebase
-
+from collections import OrderedDict
+#from firebase import firebase
 
 
 config ={
@@ -29,13 +29,15 @@ config ={
 }
 
 #init firebase
-firebase = pyrebase.initialize_app(config)
+fireb = pyrebase.initialize_app(config)
 #Authenticate
-auth=firebase.auth()
+auth=fireb.auth()
 #real time database instance
-db = firebase.database()
+db = fireb.database()
 #real time storage instance
-storage = firebase.storage()
+storage = fireb.storage()
+
+#fb = firebase.FirebaseApplication('https://imagentest-e48fa.firebaseio.com/', None)
 
 @app.route("/")
 @app.route("/home")
@@ -92,6 +94,8 @@ def register():
         email = request.form["email"]
         password = request.form["password"]
         confirm_password = request.form["confirm_password"]
+        session['username']=request.form["username"]
+        session['affiliation']=request.form["affiliation"]
         data={
             "username": username, "affiliation": affiliation, "email": email
         }
@@ -105,15 +109,11 @@ def register():
                 # Pass the user's idToken to the push method
                 db.child("users").child(username).set(data, user['idToken'])
                 #session
-                
-
-                
-                
-                return redirect("account.html",title='Account', form=form)
+                return render_template("account.html",title='Account', form=form)
             except:
-                return render_template("login.html", message="The email is already taken, try another one, please", form=form, title='Login' )  
+                return render_template("account.html", message="The email is already taken, try another one, please", form=form, title='Login' )  
 
-    return render_template("register.html", title='Register', form=form)    
+    return render_template("account.html", title='Register', form=form)    
                 
 
                 # data to save
@@ -206,24 +206,40 @@ def save_picture(form_picture):
 # Import database module.
 #from firebase_admin import rdb
 @isAuthenticated
-def account():
+def account(): #this is the dashboard
     # Get a database reference to our posts
     #ref = rdb.reference('server/saving-data/fireblog/posts')
     # Read the data at the posts reference (this is a blocking operation)
     #print(ref.get())
+    #result = fb_app.get('/users', '1')
     form = UpdateAccountForm()
-    user = db.child("users").get(session['usr']).val()
-    print(user) #returns an Ordered Dictionary. Data needs to be extracted
+    users = db.child("users").get().val()
+    print(users.values())
+    for i in users.values():
+        for a, e in i.items():
+            print(a,e)
+            if(a=="email"):
+                session['email']=e
+            if(a=="username"):
+                session['username']=e
+            if(a=="affiliation"):
+                session['affiliation']=e
+            
+    
+    print(session['username'])
+    print(session['affiliation'])
+
+    print(users) #returns an Ordered Dictionary. Data needs to be extracted
     if request.method == 'POST':
         try:
             if form.picture.filename!="default.jpg":
                 picture_file = save_picture(form.picture.data)
                 user.image= picture_file
-            form.username = user.username
-            form.affiliation = user.affiliation
-            form.email = user.email
+            form.username = username
+            form.affiliation = affiliation
+            form.email = email
             data = {
-                "affiliation": user.affiliation, "email": user.email
+                "affiliation": affiliation, "email": email
             }
             # How to update a existing data
             db.child("users").child(current_user.username).update(data)
@@ -257,7 +273,7 @@ def new_post():
         try:
           #print(title, content, file=sys.stderr)
           #push the post object to the database
-          db.child("Posts").child(session["username"]).push(post)
+          db.child("Posts").child(session["usr"]).set(post)
           return redirect(url_for('blog'), form=form)
         except:
           return render_template("create_post.html", message= "An error happened", form=form)  

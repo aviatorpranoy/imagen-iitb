@@ -6,6 +6,16 @@ from flask_login import current_user
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+class User:
+  def __init__(self, username, email, affiliation):
+    self.username = username
+    self.email = email
+    self.affiliation = affiliation
+
+  def myfunc(abc):
+    print("Hello my username is " + abc.username)
+    print("My email is " + abc.email)
+    print("My affiliation is " + abc.affiliation)
 
 #class User(db):
     #id = db.Column(db.Integer, primary_key=True)

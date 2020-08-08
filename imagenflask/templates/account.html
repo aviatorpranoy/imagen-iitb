@@ -4,7 +4,8 @@
       <div class="media">
         <img class="rounded-circle account-img" src="{{ image_file }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ form.username.data }}</h2>
+          <h2 class="account-heading">{{ session.get('username') }}</h2>
+          <h4>{{ session.get('affiliation') }}</h4>
           <p class="text-secondary">{{ session["email"] }}</p>
         </div>
       </div>
