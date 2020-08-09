@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
@@ -32,13 +31,17 @@
                         {{ form.password(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+                </small>
             </div>
-            <small class="text-muted ml-2">
-                <a href="#">Forgot Password?</a>
-            </small>
         </form>
     </div>
     <div class="border-top pt-3">
@@ -46,16 +49,4 @@
             Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
         </small>
     </div>
-    <!--<div class="col-md-4">
-    <div class="content-section">
-    <center><h3>Enquiries & Feedback</h3></center>
-    <center><p class='text-muted'>We'd like to  hear from you.
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-light"><a href="">Raise a Concern</a></li>
-        <li class="list-group-item list-group-item-light"><a href="">Add more data</a></li>
-        <li class="list-group-item list-group-item-light"><a href="">Report Incorrect Data</a></li>
-        <li class="list-group-item list-group-item-light"><a href="">Feedback</a></li>
-      </ul>
-    </p></center>
-    </div>-->
 {% endblock content %}
