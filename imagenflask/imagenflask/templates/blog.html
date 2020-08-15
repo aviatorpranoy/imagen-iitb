@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for single in posts %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ single.avatar }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="">{{ single.name }}</a>
+              <small><em class="mr-2" href="">{{ single.affiliation }}</em></small>
+              <small class="text-muted">{{ single.timestamp }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('post', post_id=single.id) }}">{{ single.title }}</a></h2>
+            <p class="article-content">{{ single.content }}</p>
+            <em>
+              <small>The author of this post can be reached at {{ single.email }}</small>
+            </em>
+          </div>
+        </article>
+    {% endfor %}
+  
+{% endblock content %}
