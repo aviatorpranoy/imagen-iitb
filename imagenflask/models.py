@@ -1,6 +1,7 @@
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from imagenflask import db, login_manager, app
+from imagenflask import login_manager, app
+from imagenflask.routes import db
 from flask_login import UserMixin
 
 

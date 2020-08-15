@@ -139,6 +139,7 @@ def register():
                  "name": username,
                  "email" : email,
                  "affiliation" : affiliation,
+                 "avatar": storage.child("default.jpg").get_url(None)
                 
         }
 
@@ -266,6 +267,7 @@ def account():
             print(session['userID'])
             allPost = db.child("users").child(session['userID']).get()
             allP = (allPost.val())
+            print(allP)
             allP = list(allP.items())
             print(allP)
             
@@ -279,7 +281,7 @@ def account():
             #image_file = 
             image_file = storage.child(allP[1][1]).get_url(None)
         
-        return render_template('account.html', title='Account', form=form, image = image_file)
+        return render_template('account.html', title='Account', form=form, image = image_file, loggedin=True)
     else:
         return redirect(url_for('login'))
 
@@ -318,7 +320,7 @@ def new_post():
 
             return redirect(url_for('blog'))
         return render_template('create_post.html', title='New Post',
-                            form=form, legend='New Post')
+                            form=form, legend='New Post', loggedin=True)
     else:
         return redirect(url_for('login'))
 
@@ -352,7 +354,10 @@ def post(post_id):
 
 
     #post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
+    if 'login' in session:
+        return render_template('post.html', loggedin=True, title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
+    else:
+        return render_template('post.html', loggedin=False, title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
 
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
@@ -405,7 +410,7 @@ def update_post(post_id):
         form.title.data = title
         form.content.data = content
     return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post')
+                           form=form, legend='Update Post', loggedin=True)
 
 
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
@@ -423,7 +428,10 @@ def delete_post(post_id):
 @app.route("/data")
 @login_required
 def data():
-    return render_template('data.html', title='Data')
+    if 'login' in session:
+        return render_template('data.html', title='Data',loggedin=True)
+    else:
+        return render_template('data.html', title='Data',loggedin=False)
 
 @app.route("/blog")
 def blog():
@@ -454,8 +462,10 @@ def blog():
 
 
     print(posts)
-    return render_template("blog.html", posts=posts, title='Blog')
-    
+    if 'login' in session:
+        return render_template("blog.html", posts=posts, title='Blog',loggedin=True)
+    else:
+        return render_template("blog.html", posts=posts, title='Blog',loggedin=False)
 #posts = db.child('posts').get()
 #if posts.val() == None:
 #return render_template('blog.html', title='Blog')
@@ -464,19 +474,32 @@ def blog():
 
 @app.route("/res")
 def res():
-    return render_template('res.html', title='Resources')
+    if 'login' in session:
+        return render_template('res.html', title='Resources',loggedin=True)
+    else:
+        return render_template('res.html', title='Resources',loggedin=False)
 
 @app.route("/forum")
 def forum():
     browser = request.user_agent.browser
     uas = request.user_agent.string
     if (browser == 'firefox') :
-        return render_template('forum.html')
-    return render_template('forumupdated.html', title='Forum')
+        if 'login' in session:
+            return render_template('forum.html', loggedin=True)
+        else:
+            return render_template('forum.html', loggedin=False)
+    else:
+        if 'login' in session:
+            return render_template('forumupdated.html', title='Forum',loggedin=True)
+        else:
+            return render_template('forumupdated.html', title='Forum',loggedin=False)
 
 @app.route("/team")
 def team():
-    return render_template('team.html', title='Team')
+    if 'login' in session:
+        return render_template('team.html', title='Team',loggedin=True)
+    else:
+        return render_template('team.html', title='Team',loggedin=False)
 
 @app.route("/user/<string:username>")
 def user_posts(username):
@@ -485,7 +508,10 @@ def user_posts(username):
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=10)
-    return render_template('user_posts.html', posts=posts, user=user)
+    if 'login' in session:
+        return render_template('user_posts.html', posts=posts, user=user,loggedin=True)
+    else:
+        return render_template('user_posts.html', posts=posts, user=user,loggedin=False)     
 
 def send_reset_email(user):
     token = user.get_reset_token()

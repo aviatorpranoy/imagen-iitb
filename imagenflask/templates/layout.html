@@ -10,21 +10,6 @@
     <meta name="author" content="Alankar Alankar"/>
     <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='button.css') }}">-->
 
-    <!-- Tribe Tag -->
-    <script>
-      (function(t,r,i,b,e){
-        if(typeof t.Tribe==='function'){t.Tribe('reload',{portal:i});}
-        else{b=function(){b.r(arguments);};b.q=[];b.r=function(args){b.q.push(args);};
-        t.Tribe=b; e=r.createElement('script');e.type='text/javascript';e.async=true;
-        e.src=i+'/widget/v1/main.js?t='+Math.ceil(new Date() / 3e5) * 3e5;
-        var x=r.getElementsByTagName('script')[0];x.parentNode.insertBefore(e,x);
-        t.Tribe('boot',{portal:i});}
-      })(window,document,'https://pranoyflask.tribe.so');
-    </script>
-
-
-
-    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -79,38 +64,6 @@
     {% endif %}
 </head>
 <body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="/">Materials Informatics</a>
-          <!--<a class="navbar-brand mr-4" href="/">Materials Informatics</a>-->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('data') }}">Data</a>
-              <a class="nav-item nav-link" href="{{ url_for('res') }}">Resources</a>
-              <a class="nav-item nav-link" href="{{ url_for('blog') }}">Blog</a>
-              <a class="nav-item nav-link" href="{{ url_for('forum') }}">Forum</a>
-              <a class="nav-item nav-link" href="{{ url_for('team') }}">Team</a>
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
-                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-              {% endif %}
-            </div>
-          </div>
-        </div> 
-      </nav>
-    </header>
      <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
