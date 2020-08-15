@@ -19,7 +19,7 @@ import requests
 import datetime
 import random
 import time
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'static/image_upload/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
