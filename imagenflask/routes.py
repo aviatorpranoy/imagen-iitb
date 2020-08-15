@@ -14,6 +14,15 @@ from flask_login import LoginManager
 from collections import OrderedDict
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Message
+import pyrebase
+import requests
+import datetime
+import random
+import time
+from werkzeug import secure_filename
+
+UPLOAD_FOLDER = 'static/image_upload/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 config ={
@@ -26,6 +35,10 @@ config ={
     "appId": "1:735866948920:web:f0b0770cd2d56c3443c5cd",
     "measurementId": "G-RYB1W48273"
 }
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+db = firebase.database()
+storage = firebase.storage()
 
 @app.route("/")
 @app.route("/home")
@@ -112,28 +125,68 @@ def register():
         return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, affiliation=form.affiliation.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        username=form.username.data
+        affiliation=form.affiliation.data
+        email=form.email.data
+        password=form.password.data
+
+        print(username, affiliation, email, password)
+        user = auth.create_user_with_email_and_password(email, password)
+        print(user)
+        uid =  user['localId']
+        data = {
+                 "name": username,
+                 "email" : email,
+                 "affiliation" : affiliation,
+                
+        }
+
+        print( user)
+        result = db.child("users").child(uid).set(data)
+
         return redirect(url_for('login'))
+
+
+
+
+
+
+        
     return render_template('register.html', title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
+    
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('account'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+        email=form.email.data
+        password = form.password.data
+        print(email, password)
+
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            print(user)
+            session['login'] = True
+            session['userID'] = user['localId']
+            return redirect(url_for('account'))
+
+
+
+
+        
+        except requests.HTTPError as e:
+            error_json = e.args[1]
+            print(error_json)
+            error = json.loads(error_json)['error']['message']
+            print(error)
+            if error == "EMAIL_EXISTS":
+                print("Email already exists")
+        
+        
+
+
     return render_template('login.html', title='Login', form=form)
 
 
@@ -141,7 +194,9 @@ def login():
 
 @app.route("/logout")
 def logout():
-    logout_user()
+    #logout_user()
+    session.pop('login', None)
+    session.pop('userID', None)
     return redirect(url_for('home'))
 
 
@@ -162,80 +217,206 @@ def save_picture(form_picture):
 
 
 @app.route("/account", methods=['GET', 'POST'])
-@login_required
+
 def account():
-    form = UpdateAccountForm()
-    if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.image_file = picture_file
-        current_user.username = form.username.data
-        current_user.affiliation = form.affiliation.data
-        current_user.email = form.email.data
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('account'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.affiliation.data = current_user.affiliation
-        form.email.data = current_user.email
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account',
-                           image_file=image_file, form=form)
+    if 'login' in session:
+
+        
+        form = UpdateAccountForm()
+        if form.validate_on_submit():
+            if form.picture.data:
+
+                print(form.picture.data)
+                #filename = secure_filename(form.picture.data.filename)
+                #form.picture.data.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                #tmp = random.randint(100000,999999)
+                picture_file = save_picture(form.picture.data)
+                #time.sleep(10)
+                
+                #storage.child("profile_pics").put("static/profile_pics/"+picture_file)
+
+                #path = os.path.abspath()
+
+                storage.child("profile_pics/"+str(picture_file)).put("imagenflask/static/profile_pics/"+picture_file)
+                
+
+
+                image_url = "profile_pics/"+picture_file
+            else:
+                image_url = "NA"
+                #current_user.image_file = picture_file
+            username = form.username.data
+            affiliation = form.affiliation.data
+            email = form.email.data
+
+
+            db.child("users").child(session['userID']).update({"name": username})
+            db.child("users").child(session['userID']).update({"email": email})
+            db.child("users").child(session['userID']).update({"avatar": image_url})
+            db.child("users").child(session['userID']).update({"affiliation": affiliation})
+            
+
+
+
+            #db.session.commit()
+            #flash('Your account has been updated!', 'success')
+            return redirect(url_for('account'))
+        elif request.method == 'GET':
+
+            print(session['userID'])
+            allPost = db.child("users").child(session['userID']).get()
+            allP = (allPost.val())
+            allP = list(allP.items())
+            print(allP)
+            
+
+
+
+
+            form.username.data = allP[3][1]
+            form.affiliation.data = allP[0][1]
+            form.email.data = allP[2][1]
+            #image_file = 
+            image_file = storage.child(allP[1][1]).get_url(None)
+        
+        return render_template('account.html', title='Account', form=form, image = image_file)
+    else:
+        return redirect(url_for('login'))
 
 
 #POSTING on Blog
 
 @app.route("/post/new", methods=['GET', 'POST'])
-@login_required
+#@login_required
 def new_post():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(title=form.title.data, content=form.content.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post has been created!', 'success')
-        return redirect(url_for('blog'))
-    return render_template('create_post.html', title='New Post',
-                           form=form, legend='New Post')
+    if 'login' in session:
+        form = PostForm()
+        print(session['login'], session['userID'])
+        if form.validate_on_submit():
+            title=form.title.data
+            content=form.content.data
+            #author=current_user
+            x = datetime.datetime.now()
+            x = x.strftime("%Y-%m-%d %H:%M:%S")
+
+            tmp = (random.randint(100000000000000,999999999999999))
+            tmp = str(tmp)
+            
+            data = {
+                 "title": title ,
+                 "content" : content,
+                 "userID" : session['userID'],
+                 "timestamp" : x,
+                 "id" : tmp}
+            
+
+            
+            result = db.child("blog").child(tmp).set(data)
+            
+
+
+
+            return redirect(url_for('blog'))
+        return render_template('create_post.html', title='New Post',
+                            form=form, legend='New Post')
+    else:
+        return redirect(url_for('login'))
+
 
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
-    post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    print(post_id)
+
+    allPost = db.child("blog").child(post_id).get()
+    allP = (allPost.val())
+    allP = list(allP.items())
+    print(allP)
+    content = allP[0][1]
+    postID = allP[1][1]
+    timestamp = allP[2][1]
+    title = allP[3][1]
+    userID = allP[4][1]
+    print(content) 
+    #add username
+    usersDetails = db.child("users").child(singlePost['userID']).get()
+    u = usersDetails.val()
+    allDetails = list(u.items())
+    print(allDetails)
+    name = (allDetails[3][1])
+    affiliation = (allDetails[0][1])
+    avatar = storage.child(allDetails[1][1]).get_url(None)
+    email = (allDetails[2][1])
+    #userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email}
+    #singlePost.update(userDict)
+
+
+    #post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
 
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
-@login_required
 def update_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if post.author != current_user:
-        abort(403)
+    #post = Post.query.get_or_404(post_id)
+    #if post.author != current_user:
+    #    abort(403)
     form = PostForm()
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.content = form.content.data
-        db.session.commit()
+        title = form.title.data
+        content = form.content.data
+        '''
+        data = {
+                "blog/"+str(post_id): {
+                    "title": title
+                },
+               "blog/"+str(post_id): {
+                    "content" : content
+                }
+            }
+        '''
+        
+        db.child("blog").child(post_id).update({"title": title})
+        db.child("blog").child(post_id).update({"content": content})
+
+            
+        #db.update(data)
+
+
+
+
+        #db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('post', post_id=post.id))
+        return redirect(url_for('post', post_id=post_id))
     elif request.method == 'GET':
-        form.title.data = post.title
-        form.content.data = post.content
+        allPost = db.child("blog").child(post_id).get()
+        allP = (allPost.val())
+        allP = list(allP.items())
+        print(allP)
+        content = allP[0][1]
+        postID = allP[1][1]
+        timestamp = allP[2][1]
+        title = allP[3][1]
+        userID = allP[4][1]
+        print(content) 
+        
+
+
+
+        form.title.data = title
+        form.content.data = content
     return render_template('create_post.html', title='Update Post',
                            form=form, legend='Update Post')
 
 
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
-@login_required
 def delete_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    if post.author != current_user:
-        abort(403)
-    db.session.delete(post)
-    db.session.commit()
+    
+    db.child("blog").child(post_id).remove()
+
+    #db.session.delete(post)
+    #db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('blog'))
 
 
 
@@ -246,8 +427,33 @@ def data():
 
 @app.route("/blog")
 def blog():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    #page = request.args.get('page', 1, type=int)
+    #posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    posts = []
+    allPost = db.child("blog").get()
+    for single in allPost.each():
+        singlePost = single.val()
+        print(singlePost)
+        print(type(singlePost))
+
+        #add username
+        usersDetails = db.child("users").child(singlePost['userID']).get()
+        u = usersDetails.val()
+        allDetails = list(u.items())
+        print(allDetails)
+        name = (allDetails[3][1])
+        affiliation = (allDetails[0][1])
+        avatar = storage.child(allDetails[1][1]).get_url(None)
+        email = (allDetails[2][1])
+        userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email}
+        singlePost.update(userDict)
+
+
+
+        posts.append(singlePost)
+
+
+    print(posts)
     return render_template("blog.html", posts=posts, title='Blog')
     
 #posts = db.child('posts').get()
