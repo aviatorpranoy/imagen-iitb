@@ -12,14 +12,14 @@ from imagenflask.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_login import LoginManager
 from collections import OrderedDict
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Message
 import pyrebase
 import requests
 import datetime
 import random
 import time
-from werkzeug.utils import secure_filename
+#from werkzeug import secure_filename
 
 UPLOAD_FOLDER = 'static/image_upload/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
