@@ -171,6 +171,7 @@ def login():
             print(user)
             session['login'] = True
             session['userID'] = user['localId']
+            flash('You have been logged in succesfully', 'success')
             return redirect(url_for('account'))
 
 
@@ -198,6 +199,7 @@ def logout():
     #logout_user()
     session.pop('login', None)
     session.pop('userID', None)
+    flash('You have been logged out succesfully', 'success')
     return redirect(url_for('home'))
 
 
@@ -318,7 +320,7 @@ def new_post():
             
 
 
-
+            flash('Your content has been posted. Thank You!', 'success')
             return redirect(url_for('blog'))
         return render_template('create_post.html', title='New Post',
                             form=form, legend='New Post', loggedin=True)
@@ -431,6 +433,7 @@ def data():
     if 'login' in session:
         return render_template('data.html', title='Data',loggedin=True)
     else:
+        flash('You need to login first!', 'info')
         return redirect(url_for('login'))
 
 @app.route("/blog")
