@@ -83,3 +83,10 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+.date{
+  text-align: right;
+}
+
+.affi{
+  text-align: left;
+}

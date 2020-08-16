@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% block content %}.<header class="site-header">
+{% block content %}
+<header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     <div class="container">
       <a class="navbar-brand mr-4" href="/">Materials Informatics</a>
@@ -38,7 +39,7 @@
             <div class="article-metadata">
               <a class="mr-2" href="">{{ single.name }}</a>
               <small><em class="mr-2" href="">{{ single.affiliation }}</em></small>
-              <small class="text-muted">{{ single.timestamp }}</small>
+              <small class="text-muted"><text class="float-right">{{ single.date }}</text></small>
             </div>
             <h2><a class="article-title" href="{{ url_for('post', post_id=single.id) }}">{{ single.title }}</a></h2>
             <p class="article-content">{{ single.content }}</p>

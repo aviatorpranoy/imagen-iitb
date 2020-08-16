@@ -33,16 +33,19 @@
   </nav>
 </header>
   <article class="media content-section">
-    <img class="rounded-circle article-img">
+    <img class="rounded-circle article-img" src="{{ avatar }}">
     <div class="media-body">
       <div class="article-metadata">
-        <a class="mr-2" href="#">{{ userID }}</a>
-        <small class="text-muted">{{ timestamp }}</small>
+        <a class="mr-2" href="#">{{ name }}</a>
+        <small><em class="mr-2" href="">{{ affiliation }}</em></small>
+        {% if loggedin %}
+        {% if userID == session['userID']%}
         <div>
           <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=postID ) }}">Update</a>
           <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
-   
+        {% endif %}
+        {% endif %}
       </div>
       <h2 class="article-title">{{ title }}</h2>
       <p class="article-content">{{ content }}</p>

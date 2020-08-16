@@ -139,7 +139,7 @@ def register():
                  "name": username,
                  "email" : email,
                  "affiliation" : affiliation,
-                 "avatar": storage.child("default.jpg").get_url(None)
+                 "avatar": "default.jpg"
                 
         }
 
@@ -243,8 +243,9 @@ def account():
 
 
                 image_url = "profile_pics/"+picture_file
+                db.child("users").child(session['userID']).update({"avatar": image_url})
             else:
-                image_url = "NA"
+                image_url = "NA" 
                 #current_user.image_file = picture_file
             username = form.username.data
             affiliation = form.affiliation.data
@@ -253,14 +254,14 @@ def account():
 
             db.child("users").child(session['userID']).update({"name": username})
             db.child("users").child(session['userID']).update({"email": email})
-            db.child("users").child(session['userID']).update({"avatar": image_url})
+
             db.child("users").child(session['userID']).update({"affiliation": affiliation})
             
 
 
 
             #db.session.commit()
-            #flash('Your account has been updated!', 'success')
+            flash('Your account has been updated!', 'success')
             return redirect(url_for('account'))
         elif request.method == 'GET':
 
@@ -273,12 +274,12 @@ def account():
             
 
 
-
+            
 
             form.username.data = allP[3][1]
             form.affiliation.data = allP[0][1]
             form.email.data = allP[2][1]
-            #image_file = 
+ 
             image_file = storage.child(allP[1][1]).get_url(None)
         
         return render_template('account.html', title='Account', form=form, image = image_file, loggedin=True)
@@ -299,7 +300,7 @@ def new_post():
             content=form.content.data
             #author=current_user
             x = datetime.datetime.now()
-            x = x.strftime("%Y-%m-%d %H:%M:%S")
+            x = x.strftime("%d-%m-%Y %H:%M:%S")
 
             tmp = (random.randint(100000000000000,999999999999999))
             tmp = str(tmp)
@@ -341,7 +342,7 @@ def post(post_id):
     userID = allP[4][1]
     print(content) 
     #add username
-    usersDetails = db.child("users").child(singlePost['userID']).get()
+    usersDetails = db.child("users").child(userID).get()
     u = usersDetails.val()
     allDetails = list(u.items())
     print(allDetails)
@@ -453,7 +454,7 @@ def blog():
         affiliation = (allDetails[0][1])
         avatar = storage.child(allDetails[1][1]).get_url(None)
         email = (allDetails[2][1])
-        userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email}
+        userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email, 'date': singlePost['timestamp'].split(" ")[0]}
         singlePost.update(userDict)
 
 
@@ -462,6 +463,8 @@ def blog():
 
 
     print(posts)
+    #x = singlePost['timestamp']
+    #posts.sort(key=lambda x: time.strptime(x, '%Y-%m-%d %H:%M:%S')[0:6], reverse=True)
     if 'login' in session:
         return render_template("blog.html", posts=posts, title='Blog',loggedin=True)
     else:
