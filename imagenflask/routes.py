@@ -12,14 +12,14 @@ from imagenflask.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_login import LoginManager
 from collections import OrderedDict
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Message
 import pyrebase
 import requests
 import datetime
 import random
 import time
-#from werkzeug import secure_filename
+#from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'static/image_upload/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -139,7 +139,6 @@ def register():
                  "name": username,
                  "email" : email,
                  "affiliation" : affiliation,
-                 "avatar": "default.jpg"
                 
         }
 
@@ -243,9 +242,8 @@ def account():
 
 
                 image_url = "profile_pics/"+picture_file
-                db.child("users").child(session['userID']).update({"avatar": image_url})
             else:
-                image_url = "NA" 
+                image_url = "NA"
                 #current_user.image_file = picture_file
             username = form.username.data
             affiliation = form.affiliation.data
@@ -254,7 +252,7 @@ def account():
 
             db.child("users").child(session['userID']).update({"name": username})
             db.child("users").child(session['userID']).update({"email": email})
-
+            db.child("users").child(session['userID']).update({"avatar": image_url})
             db.child("users").child(session['userID']).update({"affiliation": affiliation})
             
 
@@ -268,21 +266,20 @@ def account():
             print(session['userID'])
             allPost = db.child("users").child(session['userID']).get()
             allP = (allPost.val())
-            print(allP)
             allP = list(allP.items())
             print(allP)
             
 
 
-            
+
 
             form.username.data = allP[3][1]
             form.affiliation.data = allP[0][1]
             form.email.data = allP[2][1]
- 
+            #image_file = 
             image_file = storage.child(allP[1][1]).get_url(None)
         
-        return render_template('account.html', title='Account', form=form, image = image_file, loggedin=True)
+        return render_template('account.html', title='Account', form=form, image = image_file)
     else:
         return redirect(url_for('login'))
 
@@ -300,7 +297,7 @@ def new_post():
             content=form.content.data
             #author=current_user
             x = datetime.datetime.now()
-            x = x.strftime("%d-%m-%Y %H:%M:%S")
+            x = x.strftime("%Y-%m-%d %H:%M:%S")
 
             tmp = (random.randint(100000000000000,999999999999999))
             tmp = str(tmp)
@@ -321,7 +318,7 @@ def new_post():
 
             return redirect(url_for('blog'))
         return render_template('create_post.html', title='New Post',
-                            form=form, legend='New Post', loggedin=True)
+                            form=form, legend='New Post')
     else:
         return redirect(url_for('login'))
 
@@ -342,7 +339,7 @@ def post(post_id):
     userID = allP[4][1]
     print(content) 
     #add username
-    usersDetails = db.child("users").child(userID).get()
+    usersDetails = db.child("users").child(singlePost['userID']).get()
     u = usersDetails.val()
     allDetails = list(u.items())
     print(allDetails)
@@ -355,10 +352,7 @@ def post(post_id):
 
 
     #post = Post.query.get_or_404(post_id)
-    if 'login' in session:
-        return render_template('post.html', loggedin=True, title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
-    else:
-        return render_template('post.html', loggedin=False, title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
+    return render_template('post.html', title=title, content = content, postID = postID, timestamp = timestamp, userID = userID, name=name, affiliation = affiliation, avatar = avatar, email = email)
 
 
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
@@ -411,7 +405,7 @@ def update_post(post_id):
         form.title.data = title
         form.content.data = content
     return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post', loggedin=True)
+                           form=form, legend='Update Post')
 
 
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
@@ -429,10 +423,7 @@ def delete_post(post_id):
 @app.route("/data")
 @login_required
 def data():
-    if 'login' in session:
-        return render_template('data.html', title='Data',loggedin=True)
-    else:
-        return render_template('data.html', title='Data',loggedin=False)
+    return render_template('data.html', title='Data')
 
 @app.route("/blog")
 def blog():
@@ -454,7 +445,7 @@ def blog():
         affiliation = (allDetails[0][1])
         avatar = storage.child(allDetails[1][1]).get_url(None)
         email = (allDetails[2][1])
-        userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email, 'date': singlePost['timestamp'].split(" ")[0]}
+        userDict = {'name' : name, 'affiliation' : affiliation, 'avatar' : avatar, 'email' : email}
         singlePost.update(userDict)
 
 
@@ -463,12 +454,8 @@ def blog():
 
 
     print(posts)
-    #x = singlePost['timestamp']
-    #posts.sort(key=lambda x: time.strptime(x, '%Y-%m-%d %H:%M:%S')[0:6], reverse=True)
-    if 'login' in session:
-        return render_template("blog.html", posts=posts, title='Blog',loggedin=True)
-    else:
-        return render_template("blog.html", posts=posts, title='Blog',loggedin=False)
+    return render_template("blog.html", posts=posts, title='Blog')
+    
 #posts = db.child('posts').get()
 #if posts.val() == None:
 #return render_template('blog.html', title='Blog')
@@ -477,32 +464,19 @@ def blog():
 
 @app.route("/res")
 def res():
-    if 'login' in session:
-        return render_template('res.html', title='Resources',loggedin=True)
-    else:
-        return render_template('res.html', title='Resources',loggedin=False)
+    return render_template('res.html', title='Resources')
 
 @app.route("/forum")
 def forum():
     browser = request.user_agent.browser
     uas = request.user_agent.string
     if (browser == 'firefox') :
-        if 'login' in session:
-            return render_template('forum.html', loggedin=True)
-        else:
-            return render_template('forum.html', loggedin=False)
-    else:
-        if 'login' in session:
-            return render_template('forumupdated.html', title='Forum',loggedin=True)
-        else:
-            return render_template('forumupdated.html', title='Forum',loggedin=False)
+        return render_template('forum.html')
+    return render_template('forumupdated.html', title='Forum')
 
 @app.route("/team")
 def team():
-    if 'login' in session:
-        return render_template('team.html', title='Team',loggedin=True)
-    else:
-        return render_template('team.html', title='Team',loggedin=False)
+    return render_template('team.html', title='Team')
 
 @app.route("/user/<string:username>")
 def user_posts(username):
@@ -511,10 +485,7 @@ def user_posts(username):
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=10)
-    if 'login' in session:
-        return render_template('user_posts.html', posts=posts, user=user,loggedin=True)
-    else:
-        return render_template('user_posts.html', posts=posts, user=user,loggedin=False)     
+    return render_template('user_posts.html', posts=posts, user=user)
 
 def send_reset_email(user):
     token = user.get_reset_token()
