@@ -17,7 +17,6 @@
             <a class="nav-item nav-link" href="{{ url_for('forum') }}">Forum</a>
             <a class="nav-item nav-link" href="{{ url_for('team') }}">Team</a>
             <a class="nav-item nav-link" href="{{ url_for('news') }}">News</a>
-
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
@@ -35,8 +34,8 @@
     </nav>
   </header>
 <!--<div class="col-md-8">-->
-	<h1>Data Upload Page</h1>
-	<article class="media content-section">
-		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeUKuoHiWkw2RPY69u95fhGSlt4UeDuGXahH-bxQoDL4byriQ/viewform?embedded=true" width="704" height="950" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-	</article>
-{% endblock content %}
+    <!--<h1>NEWS</h1>-->
+    <article class="media content-section">
+        <div id="widgetmain" style="text-align:center;overflow-y:auto;overflow-x:hidden;width:704px;background-color:#transparent; border:1px solid #FFFFFF;"><div id="rsswidget" style="height:1500px;"><iframe src="http://us1.rssfeedwidget.com/getrss.php?time=1597700421342&amp;x=http%3A%2F%2Fwww.materialstoday.com%2Frss%2Fcomputation-theory%2Fnews%2F&amp;w=704&amp;h=1500&amp;bc=FFFFFF&amp;bw=1&amp;bgc=transparent&amp;m=5&amp;it=true&amp;t=Around The World&amp;tc=FFFFFF&amp;ts=25&amp;tb=1472C9&amp;il=true&amp;lc=0000FF&amp;ls=14&amp;lb=true&amp;id=true&amp;dc=333333&amp;ds=14&amp;idt=true&amp;dtc=284F2D&amp;dts=12" border="0" hspace="0" vspace="0" marginwidth="0" marginheight="0" style="border:0; padding:0; margin:0; width:704px; height:1500px;" id="rssOutput" frameborder="no">Reading RSS Feed ...</iframe></div><div style="text-align:right;margin-bottom:0;border-top:1px solid #FFFFFF;" id="widgetbottom"><span style="font-size:70%"><a href="http://www.rssfeedwidget.com">rss feed widget</a>&nbsp;</span><br></div></div>
+    </article>
+   {% endblock content %}
