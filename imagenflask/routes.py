@@ -19,6 +19,7 @@ import requests
 import datetime
 import random
 import time
+import feedparser
 #from werkzeug import secure_filename
 
 UPLOAD_FOLDER = 'static/image_upload/'
@@ -505,6 +506,14 @@ def team():
         return render_template('team.html', title='Team',loggedin=True)
     else:
         return render_template('team.html', title='Team',loggedin=False)
+
+
+@app.route("/news")
+def news():    
+    if 'login' in session:
+        return render_template('news.html', title='News',loggedin=True)
+    else:
+        return render_template('news.html', title='News',loggedin=False)
 
 @app.route("/user/<string:username>")
 def user_posts(username):
