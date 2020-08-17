@@ -19,7 +19,6 @@ import requests
 import datetime
 import random
 import time
-import feedparser
 #from werkzeug import secure_filename
 
 UPLOAD_FOLDER = 'static/image_upload/'
