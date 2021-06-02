@@ -51,7 +51,7 @@ svgwrite==1.4
 symengine==0.6.0
 sympy==1.6.1
 Tree==0.2.4
-urllib3==1.25.10
+urllib3==1.26.5
 virtualenv==20.0.28
 webencodings==0.5.1
 Werkzeug==1.0.1
